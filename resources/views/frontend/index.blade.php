@@ -23,8 +23,8 @@
 
     <section class="py-1">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-12 col-lg-6">
                     <img src="{{ asset($banner->image) }}" alt="" class="img-fluid w-100" style="border: 2px solid #3498db; border-radius: 10px;">
                 </div>
             </div>
@@ -76,7 +76,7 @@
                                     </a>
                                 </div>
 
-                                <span>Promo code:
+                                <span style="font-size: 17px;">Promo code:
                                     <span class="code" id="code-{{ $loop->index }}">{{ $item->promo_code }}</span>
 
                                     <span class="copy-wrapper" onclick="copyToClipboard('{{ $item->promo_code }}', this)">
