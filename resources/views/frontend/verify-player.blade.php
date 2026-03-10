@@ -121,7 +121,9 @@
                         <div class="info-form-wrapper mx-auto text-start" style="max-width: 600px;">
 
                             <div class="info-step mb-3">
-                                <h5 class="step-label">1. Select your bookmaker</h5>
+                                <h5 class="step-label">
+                                    1. Select your bookmaker
+                                </h5>
                                 <div class="row justify-content-center">
                                     @foreach ($datas as $item)
                                         <div class="col-6 col-md-3 bookmaker-logo text-center mt-3 px-1"
