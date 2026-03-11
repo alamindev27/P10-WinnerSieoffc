@@ -122,7 +122,8 @@
 
                             <div class="info-step mb-3">
                                 <h5 class="step-label">
-                                    1. Select your bookmaker
+                                    <span class="d-block">1. Select your bookmaker.</span>
+                                    <span class="d-block">১) কোন সাইট এ একাউন্ট খুলেছেন?</span>
                                 </h5>
                                 <div class="row justify-content-center">
                                     @foreach ($datas as $item)
@@ -141,7 +142,10 @@
                             </div>
 
                             <div class="info-step mb-3">
-                                <h5 class="step-label">2. Enter Player ID</h5>
+                                <h5 class="step-label">
+                                    <span class="d-block">2. Enter Player ID</span>
+                                    <span class="d-block">২) প্লেয়ার একাউন্ট নাম্বার দিন</span>
+                                </h5>
                                 <div class="d-flex flex-column gap-1 mt-3">
                                     <div class="d-flex gap-2">
                                         <input type="text" id="player_id_input" class="form-control custom-input-glow"
@@ -160,7 +164,10 @@
                             </div>
 
                             <div class="info-step mb-3">
-                                <h5 class="step-label">3. Deposit Amount</h5>
+                                <h5 class="step-label">
+                                    <span class="d-block">3. Deposit Amount</span>
+                                    <span class="d-block">৩) ডিপোজিট পরিমাণ দিন</span>
+                                </h5>
                                 <div class="d-flex flex-column gap-1 mt-3">
                                     <div class="d-flex gap-2">
                                         <input type="number" id="deposit_amount_input"
@@ -176,7 +183,10 @@
                             </div>
 
                             <div class="info-step mb-3">
-                                <h5 class="step-label">4. Select Server your country</h5>
+                                <h5 class="step-label">
+                                    <span class="d-block">4. Select Server</span>
+                                    <span class="d-block">৪) সার্ভার/দেশ সিলেক্ট করুন</span>
+                                </h5>
                                 <div class="mt-3">
                                     <select id="server_select" class="form-select custom-input-glow" name="server_name"
                                         required>
