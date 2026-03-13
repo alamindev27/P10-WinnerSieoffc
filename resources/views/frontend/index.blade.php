@@ -14,7 +14,7 @@
 
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <section class="hero-banner" style="background-image: url('{{ asset($banner->image) }}');">
+                <section class="hero-banner" style="background-image: url('{{ asset("frontend/img/1xbet.webp") }}');">
                     <div class="banner-overlay"></div>
                     <div class="container h-100">
                         <div class="row h-100 align-items-center text-center">
@@ -36,7 +36,7 @@
 
             <div class="carousel-item">
                 <section class="hero-banner"
-                    style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80');">
+                    style="background-image: url('{{ asset("frontend/img/megapari.webp") }}');">
                     <div class="banner-overlay"></div>
                     <div class="container h-100">
                         <div class="row h-100 align-items-center text-center">
@@ -146,11 +146,11 @@
                         <div class="result-row">
                             <span class="day-text">
                                 <a href="{{ $item->link }}" target="_blank" title="{{ $item->name }}">
-                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid"
-                                        style="max-width: 90px; vertical-align: middle;">
+                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid" style="max-width: 90px; vertical-align: middle;">
                                 </a>
                             </span>
-                            <span class="win-text">PROMO CODE: <span class="">{{ $item->promo_code }} <span
+                            <span class="win-text" style="font-size: 13px;">PROMO CODE</span>
+                            <span class="win-text"><span class="">{{ $item->promo_code }} <span
                                         class="copy-wrapper" onclick="copyToClipboard('{{ $item->promo_code }}', this)">
                                         <span class="copy-tooltip">Copied!</span>
                                         <span class="copy-btn" style="cursor: pointer;">
