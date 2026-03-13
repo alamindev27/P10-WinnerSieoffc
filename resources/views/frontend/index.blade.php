@@ -34,7 +34,7 @@
     <section class="prediction-section py-3">
         <div class="container text-center">
 
-            <a href="#">Previous উইনিং প্রুফ চেক করুন</a>
+            <a href="#" class="text-danger">Previous উইনিং প্রুফ চেক করুন</a>
 
             <div class="d-flex justify-content-center gap-3 my-4">
                 @if (isset(setting()->voice) && file_exists(public_path(setting()->voice)))
