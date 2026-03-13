@@ -111,6 +111,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <h2 class="section-title-glow my-3 text-center">আজকের শিওর উইন মাল্টি লাইভ! ফ্রি কোড নিয়ে এখনই খেলুন এবং প্রতিদিনের জয়ের সুযোগ নিন – দেরি করলে আজকের প্রফিট মিস হয়ে যেতে পারে।</h2>
                 <h2 class="section-title-glow my-3 text-center">সঠিক ভাবে প্রমোকোড ব্যাবহার করে একাউন্ট অপেন না করলে মাল্টির কোড আসবে না!</h2>
 
                 <div class="alert alert-bg-color">
