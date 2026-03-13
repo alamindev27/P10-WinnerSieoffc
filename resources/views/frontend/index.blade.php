@@ -22,7 +22,8 @@
             </div>
 
             <div class="col-12 col-lg-6 mx-auto">
-                <img src="{{ asset($banner->image) }}" alt="" class="img-fluid w-100" style="border: 2px solid #3498db; border-radius: 10px;">
+                <img src="{{ asset($banner->image) }}" alt="" class="img-fluid w-100"
+                    style="border: 2px solid #3498db; border-radius: 10px;">
             </div>
 
             <div class="col-12 text-center mt-4 mx-auto">
@@ -30,7 +31,23 @@
                 <button class="claim-btn">
                     Claim Today's Free Multi 🔥
                 </button>
-                <a href="#" class="footer-link">Free Sign up & Win Big!</a>
+                <a href="#" class="footer-link">Previous উইনিং প্রুফ চেক করুন</a>
+
+            </div>
+
+            <div class="col-12 text-center mx-auto">
+
+                <div class="d-flex justify-content-center  my-2">
+                    @if (isset(setting()->voice) && file_exists(public_path(setting()->voice)))
+                        <div class="" class="">
+                            <audio controls
+                                style="border: 2px solid #3498db; border-radius: 30px; box-shadow: 0 0 35px rgba(0, 210, 255, 0.6);">
+                                <source src="{{ asset(setting()->voice) }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    @endif
+                </div>
 
             </div>
 
