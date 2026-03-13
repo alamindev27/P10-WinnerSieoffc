@@ -171,6 +171,7 @@
 
 
             <div class="col-md-12">
+                {{-- white bg color red hobe --}}
                 <h2 class="section-title-glow my-3 text-center">ফ্রি মাল্টি কোড পেতে হলে অবশ্যই সঠিক প্রোমোকোড ব্যবহার করে একাউন্ট ওপেন করুন, অন্যথায় কোড প্রদান করা সম্ভব হবে না।</h2>
             </div>
 
