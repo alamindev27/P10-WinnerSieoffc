@@ -6,478 +6,136 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promo Banner</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at center, #1a2a3a 0%, #050a0f 100%);
-        }
+    <link rel="stylesheet" href="{{ asset('frontend/css/index.css') }}">
 
-
-        .title-top {
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-        }
-
-        .sub-title {
-            color: #ffcc00;
-            /* Yellow color */
-            font-weight: 800;
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-
-        .bengali-text {
-            color: #ffffff;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .amount-text {
-            color: #ffcc00;
-            font-weight: bold;
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-
-        /* Button Styling */
-        .claim-btn {
-            background: linear-gradient(to bottom, #ffd700, #ff8c00);
-            border: none;
-            border-radius: 50px;
-            padding: 12px 25px;
-            font-weight: bold;
-            font-size: 1rem;
-            color: #000;
-            width: 100%;
-            margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .footer-link {
-            color: #ffffff;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        /* Timer Section */
-        .timer-box {
-            border: 2px solid #3dcc3d;
-            border-radius: 15px;
-            padding: 12px;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 1.4rem;
-            background: rgba(0, 0, 0, 0.4);
-            /* Outer and Inner Glow for the box */
-            box-shadow: 0 0 10px rgba(61, 204, 61, 0.3), inset 0 0 10px rgba(61, 204, 61, 0.2);
-        }
-
-        .time-unit {
-            color: #ffffff;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-        }
-
-        .timer-divider {
-            color: #aaa;
-        }
-
-        .green-num {
-            color: #a2ff00;
-            text-shadow: 0 0 8px rgba(162, 255, 0, 0.8), 0 0 15px rgba(162, 255, 0, 0.5);
-        }
-
-        .purple-num {
-            color: #e066ff;
-            text-shadow: 0 0 8px rgba(224, 102, 255, 0.8), 0 0 15px rgba(224, 102, 255, 0.5);
-        }
-
-        .yellow-num {
-            color: #ffff00;
-            text-shadow: 0 0 8px rgba(255, 255, 0, 0.8), 0 0 15px rgba(255, 255, 0, 0.5);
-        }
-
-        .entry-count {
-            color: #ffcc00;
-            font-size: 1.1rem;
-            margin-top: 20px;
-            font-weight: bold;
-        }
-
-        .pink-text {
-            color: #ff3399;
-        }
-
-        /* Step Section Design */
-        .step-container {
-            border: 1px solid #1a5a8a;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.4);
-            margin-top: 15px;
-            overflow: hidden;
-            display: flex;
-        }
-
-        .step-box {
-            position: relative;
-            flex: 1;
-            padding: 12px 5px;
-            border-right: 1px solid rgba(0, 150, 255, 0.3);
-        }
-
-        .step-box::after {
-            content: "";
-            position: absolute;
-            right: -10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 10px solid rgba(0, 150, 255, 0.5);
-            /* Glowing blue arrow */
-            z-index: 10;
-        }
-
-        .step-title {
-            font-weight: 800;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-            text-transform: capitalize;
-        }
-
-        .step-1-color {
-            color: #ffffff;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        .step-2-color,
-        .step-3-color {
-            color: #ccff00;
-            /* Neon yellow-green */
-            text-shadow: 0 0 10px rgba(204, 255, 0, 0.8), 0 0 20px rgba(204, 255, 0, 0.5);
-        }
-
-        .step-icon {
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        .step-desc {
-            font-size: 0.8rem;
-            color: #ddd;
-        }
-
-        /* Proof Section Design */
-        .proof-card {
-            border: 1px solid #1a5a8a;
-            border-radius: 15px;
-            background: rgba(0, 5, 15, 0.8);
-            margin-top: 25px;
-            padding: 15px;
-            box-shadow: inset 0 0 15px rgba(0, 150, 255, 0.2);
-        }
-
-        .proof-title {
-            color: #ffffff;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .yellow-highlight {
-            color: #ffcc00;
-        }
-
-        .result-row {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #222;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            padding: 10px 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .day-text {
-            color: #eee;
-            font-weight: 500;
-        }
-
-        .win-text {
-            color: #55ff55;
-            font-weight: bold;
-        }
-
-        .loss-text {
-            color: #ff4444;
-            font-weight: bold;
-        }
-
-        .status-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-        }
-
-        .win-icon {
-            background: #55ff55;
-            color: #000;
-        }
-
-        .loss-icon {
-            background: #ff4444;
-            color: #fff;
-        }
-
-        Eibare apnar deya tin number image-er section-ti design kore dicchi. Eta holo stats (Total Members & Won) ebong ekta premium badge section. Ei code-tuku ager code-er proof-card er thik niche boshate hobe. Updated HTML & CSS Code HTML <style>
-
-        /* Stats Section */
-        .stats-container {
-            border: 1px solid #333;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 15px;
-            margin-top: 20px;
-        }
-
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-        }
-
-        .stat-row:first-child {
-            border-bottom: 1px solid #222;
-            margin-bottom: 5px;
-        }
-
-        .stat-value {
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
-
-        .yellow-text {
-            color: #ffcc00;
-        }
-
-        .green-text {
-            color: #55ff55;
-        }
-
-        .stat-label {
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .divider-line {
-            color: #444;
-            margin: 0 10px;
-        }
-
-        /* Badge Section */
-        .badge-container {
-            border: 1px solid #444;
-            border-radius: 50px;
-            background: linear-gradient(90deg, #001529 0%, #000 100%);
-            margin-top: 20px;
-            padding: 8px 15px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Glow effect for badge border */
-        .badge-container::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 50px;
-            box-shadow: inset 0 0 10px rgba(0, 150, 255, 0.3);
-            pointer-events: none;
-        }
-
-        .badge-icon-circle {
-            background: #ccff00;
-            /* Neon yellow-green */
-            color: #000;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 1.2rem;
-            margin-right: 15px;
-            border: 2px solid #fff;
-        }
-
-        .badge-text {
-            text-align: left;
-            line-height: 1.2;
-        }
-
-        .badge-text-top {
-            color: #fff;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
-
-        .badge-text-bottom {
-            color: #ffcc00;
-            font-size: 0.85rem;
-        }
-
-        /* Final Claim Button Styling */
-        .final-claim-btn {
-            background: linear-gradient(90deg, #0a2e4e 0%, #1a5a8a 100%);
-            border: 1px solid #0096ff;
-            border-radius: 50px;
-            color: white;
-            width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-transform: uppercase;
-        }
-    </style>
 </head>
 
 <body>
 
     <div class="container">
         <div class="row">
-            <div class="col-12 text-center mt-5">
-                <div class="mx-auto">
-                    <div class="title-top">Bangladesh Trusted</div>
-                    <div class="sub-title">Free Multi Tips Channel</div>
+            <div class="col-12 text-center mt-5 mx-auto">
+                <div class="title-top">Bangladesh Trusted</div>
+                <div class="sub-title">Free Multi Tips Channel</div>
+                <div class="bengali-text">{{ $banner->heading_1 }}</div>
+                <div class="amount-text">{{ $banner->heading_2 }}</div>
+            </div>
 
-                    <div class="bengali-text">আজকের ফ্রি মাল্টি কোড নিয়ে</div>
-                    <div class="amount-text">2000+ টাকা জিতুন</div>
+            <div class="col-12 col-lg-6 mx-auto">
+                <img src="{{ asset($banner->image) }}" alt="" class="img-fluid w-100" style="border: 2px solid #3498db; border-radius: 10px;">
+            </div>
 
-                    <button class="claim-btn">
-                        Claim Today's Free Multi 🔥
-                    </button>
+            <div class="col-12 text-center mt-4 mx-auto">
 
-                    <a href="#" class="footer-link">Free Sign up & Win Big!</a>
+                <button class="claim-btn">
+                    Claim Today's Free Multi 🔥
+                </button>
+                <a href="#" class="footer-link">Free Sign up & Win Big!</a>
 
-                    <div class="timer-box">
-                        <div class="time-unit"><span class="green-num">05</span> Hrs</div>
-                        <div class="timer-divider">|</div>
-                        <div class="time-unit"><span class="purple-num">34</span> Min</div>
-                        <div class="timer-divider">|</div>
-                        <div class="time-unit"><span class="yellow-num">12</span> Sec</div>
+            </div>
+
+
+            <div class="col-12 text-center mt-2 mx-auto">
+
+                <div class="timer-box">
+                    <div class="time-unit"><span class="green-num">05</span> Hrs</div>
+                    <div class="timer-divider">|</div>
+                    <div class="time-unit"><span class="purple-num">34</span> Min</div>
+                    <div class="timer-divider">|</div>
+                    <div class="time-unit"><span class="yellow-num">12</span> Sec</div>
+                </div>
+
+            </div>
+
+
+            <div class="col-12 text-center mt-2 mx-auto">
+
+                <div class="entry-count">
+                    Only 50 Free Entries Today! <span class="pink-text">(28 Left)</span>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-box">
+                        <div class="step-title step-1-color">Step 1</div>
+                        <div class="step-icon">📇</div>
+                        <div class="step-desc"><span class="yellow-highlight">1</span> Sign Up</div>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-title step-2-color">Step 2</div>
+                        <div class="step-icon">💼</div>
+                        <div class="step-desc"><span class="yellow-highlight">2</span> Deposit</div>
+                    </div>
+                    <div class="step-box">
+                        <div class="step-title step-3-color">Step 3</div>
+                        <div class="step-icon">⚽</div>
+                        <div class="step-desc">Get Free Multi</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-12 text-center mt-2 mx-auto">
+
+                <div class="proof-card">
+                    <div class="proof-title">Proof Your Bankroll in <span class="yellow-highlight">3 Easy</span>
                     </div>
 
-
-
-
-                    <div class="entry-count">
-                        Only 50 Free Entries Today! <span class="pink-text">(28 Left)</span>
+                    <div class="result-row">
+                        <span class="day-text">🕒 Yesterday:</span>
+                        <span class="win-text">WIN <span class="status-icon win-icon">✔</span></span>
                     </div>
 
-                    <div class="step-container">
-                        <div class="step-box">
-                            <div class="step-title step-1-color">Step 1</div>
-                            <div class="step-icon">📇</div>
-                            <div class="step-desc"><span class="yellow-highlight">1</span> Sign Up</div>
-                        </div>
-                        <div class="step-box">
-                            <div class="step-title step-2-color">Step 2</div>
-                            <div class="step-icon">💼</div>
-                            <div class="step-desc"><span class="yellow-highlight">2</span> Deposit</div>
-                        </div>
-                        <div class="step-box">
-                            <div class="step-title step-3-color">Step 3</div>
-                            <div class="step-icon">⚽</div>
-                            <div class="step-desc">Get Free Multi</div>
-                        </div>
+                    <div class="result-row">
+                        <span class="day-text">🕒 2 days ago:</span>
+                        <span class="win-text">WIN <span class="status-icon win-icon">✔</span></span>
                     </div>
 
-                    <div class="proof-card">
-                        <div class="proof-title">Proof Your Bankroll in <span class="yellow-highlight">3 Easy</span>
-                        </div>
+                    <div class="result-row">
+                        <span class="day-text">🕒 3 days ago:</span>
+                        <span class="loss-text">LOSS <span class="status-icon loss-icon">✖</span></span>
+                    </div>
+                </div>
 
-                        <div class="result-row">
-                            <span class="day-text">🕒 Yesterday:</span>
-                            <span class="win-text">WIN <span class="status-icon win-icon">✔</span></span>
-                        </div>
+            </div>
 
-                        <div class="result-row">
-                            <span class="day-text">🕒 2 days ago:</span>
-                            <span class="win-text">WIN <span class="status-icon win-icon">✔</span></span>
-                        </div>
+            <div class="col-12 text-center mt-2 mx-auto">
 
-                        <div class="result-row">
-                            <span class="day-text">🕒 3 days ago:</span>
-                            <span class="loss-text">LOSS <span class="status-icon loss-icon">✖</span></span>
+
+                <div class="proof-card">
+
+                    <div class="stats-container">
+                        <div class="stat-row">
+                            <span class="stat-value yellow-text">16,530+</span>
+                            <span class="divider-line">|</span>
+                            <span class="stat-label">Total Members</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-value green-text">Tk. 5,182,500+</span>
+                            <span class="divider-line">|</span>
+                            <span class="stat-label">Total Won</span>
                         </div>
                     </div>
-
-
-
-                    <div class="proof-card">
-
-                        <div class="stats-container">
-                            <div class="stat-row">
-                                <span class="stat-value yellow-text">16,530+</span>
-                                <span class="divider-line">|</span>
-                                <span class="stat-label">Total Members</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-value green-text">Tk. 5,182,500+</span>
-                                <span class="divider-line">|</span>
-                                <span class="stat-label">Total Won</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="badge-container">
-                        <div class="badge-icon-circle">#1</div>
-                        <div class="badge-text">
-                            <div class="badge-text-top">Bangladesh #1 Free Multi</div>
-                            <div class="badge-text-bottom">Paid Tips 💸 🔥</div>
-                        </div>
-                    </div>
-
-                    <button class="final-claim-btn">
-                        <span>🔥</span> Claim Now Free
-                    </button>
-
-
-
-
-
-
-
-
-
 
                 </div>
+
+            </div>
+
+            <div class="col-12 text-center mt-2 mx-auto">
+
+                <div class="badge-container">
+                    <div class="badge-icon-circle">#1</div>
+                    <div class="badge-text">
+                        <div class="badge-text-top">Bangladesh #1 Free Multi</div>
+                        <div class="badge-text-bottom">Paid Tips 💸 🔥</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 text-center mt-2 mx-auto">
+
+                <button class="final-claim-btn">
+                    <span>🔥</span> Claim Now Free
+                </button>
             </div>
         </div>
     </div>
