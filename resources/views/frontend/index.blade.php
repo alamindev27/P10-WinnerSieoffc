@@ -51,9 +51,7 @@
             </div>
 
             <div class="intro-text mb-4">
-                <small>Welcome to the ultimate Thimbles prediction experience. Use our advanced system to predict
-                    outcomes
-                    and maximize your winning potential.</small>
+                <small>যারা 1xbet/Melbet/Linebet সহ বিভিন্ন বেটিং সাইটে প্রচুর লসে আছেব তারা আমাদের সাইটের ১০০% ফিক্সড মাল্টি একদম ফ্রি - তে খেলে প্রতিদিন ২০-৫০ হাজার টাকা ইনকাম করতে পারবেন। কোনো প্রকার পেমেন্ট করা লাগবে না</small>
             </div>
 
             <div class="alert-box mb-3">
