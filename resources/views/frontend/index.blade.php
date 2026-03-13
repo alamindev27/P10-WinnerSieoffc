@@ -55,9 +55,7 @@
             </div>
 
             <div class="alert-box mb-3">
-                <small><span class="text-warning">⚠️ Important:</span> You must register using one of the links below
-                    and
-                    deposit $20 to activate your promo code.</small>
+                <small><span class="text-warning">⚠️ Important:</span> আপনার মাল্টির কোড সক্রিয় করতে আপনাকে নীচের যেকোনো একটি লিঙ্ক ব্যবহার করে নিবন্ধন করতে হবে এবং ১০০০৳ ডিপোজিট করতে হবে!</small>
             </div>
 
             <div class="promo-container mx-auto">
