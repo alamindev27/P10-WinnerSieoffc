@@ -57,13 +57,13 @@
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"
             style="z-index: 20;">
             <span class="carousel-control-prev-icon" aria-hidden="true"
-                style="width: 3rem; height: 3rem; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));"></span>
+                style="width: 2rem; height: 2rem; "></span>
             <span class="visually-hidden">Previous</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"
             style="z-index: 20;">
             <span class="carousel-control-next-icon" aria-hidden="true"
-                style="width: 3rem; height: 3rem; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));"></span>
+                style="width: 2rem; height: 2rem; "></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
