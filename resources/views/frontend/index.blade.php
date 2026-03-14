@@ -1,47 +1,6 @@
 @extends('frontend.layouts.app')
 @section('head')
     <link rel="stylesheet" href="{{ asset('frontend/css/index.css') }}">
-    <style>
-        .watch-btn {
-            background: #ff0000;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 40px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-transform: uppercase;
-            box-shadow: 0px 0px 20px 0px #ff0000;
-            transition: 0.3s;
-        }
-
-        .watch-btn .icon {
-            background: #fff;
-            color: #ff0000;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-        }
-
-        .watch-btn:hover {
-            background: #cc0000;
-            color: #fff;
-            box-shadow: none;
-        }
-
-        .watch-btn:hover .icon {
-            background: #fff;
-            color: #000;
-            box-shadow: none;
-        }
-    </style>
 @endsection
 @section('content')
     <div class="container">
@@ -67,12 +26,10 @@
 
             <div class="col-12 text-center mt-3 mx-auto">
 
-                <button class="claim-btn">
+                <button class="claim-btn" data-bs-toggle="modal" data-bs-target="#registrationModal">
                     Claim Today's Free Multi 🔥
                 </button>
-                <a href="{{ $intro->winning_link }}" target="_blank" class="footer-link">
-                    {{-- video icon --}}
-                    Previous উইনিং প্রুফ চেক করুন</a>
+                <a href="{{ $intro->winning_link }}" target="_blank" class="footer-link">Previous উইনিং প্রুফ চেক করুন</a>
 
             </div>
 
@@ -116,7 +73,6 @@
             </div>
         </div>
 
-
         <div class="col-12 text-center mt-3 mx-auto">
 
             <div class="proof-card p-2">
@@ -156,8 +112,6 @@
             </div>
 
         </div>
-
-
 
         <div class="col-12 text-center mt-3 mx-auto">
 
@@ -244,7 +198,35 @@
 
         </div>
 
-    </div>
+        <div class="col-12 text-center mt-3 mx-auto">
+
+            <button class="final-claim-btn" data-bs-toggle="modal" data-bs-target="#registrationModal">
+                <span>🔥</span> Claim Now Free
+            </button>
+        </div>
+
+        <div class="modal fade" id="registrationModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content custom-modal-bg">
+                    <div class="modal-body text-center p-5">
+                        <h4 class="modal-title-custom mb-3">Registration Check</h4>
+                        <p class="modal-text-custom mb-4">Did you register through one of the links?</p>
+
+                        <div class="d-flex justify-content-center gap-3">
+                            <button onclick="return window.location.href='{{ route('frontend.verify.player') }}'"
+                                class="btn-modal btn-yes d-flex align-items-center justify-content-center">
+                                <span class="me-2">✅</span> Yes
+                            </button>
+                            <button class="btn-modal btn-no d-flex align-items-center justify-content-center"
+                                data-bs-dismiss="modal">
+                                <span class="me-2">❌</span> No
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
