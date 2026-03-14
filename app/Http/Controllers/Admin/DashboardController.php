@@ -49,4 +49,24 @@ class DashboardController extends Controller
 
         return redirect()->route('admin.voice.edit')->with('success', 'Voice updated successfully.');
     }
+
+    public function editMemberAndWinning()
+    {
+        return view('admin.setting.edit-member-winning');
+    }
+
+    public function updateMemberAndWinning(Request $request)
+    {
+        $request->validate([
+            'total_members' => 'required|integer|min:0',
+            'winning_amount' => 'required|numeric|min:0',
+        ]);
+
+        Setting::find(1)->update([
+            'total_members' => $request->total_members,
+            'total_won' => $request->winning_amount,
+        ]);
+
+        return redirect()->route('admin.member.Winning.edit')->with('success', 'Member and winning amount updated successfully.');
+    }
 }

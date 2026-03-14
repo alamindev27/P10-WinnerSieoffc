@@ -18,6 +18,9 @@ Route::name('admin.')->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
         Route::get('/voice/edit', 'editVoice')->name('voice.edit');
         Route::post('/voice', 'updateVoice')->name('voice.update');
+
+        Route::get('/our-members-and-winning-amount', 'editMemberAndWinning')->name('member.Winning.edit');
+        Route::post('/our-members-and-winning-amount', 'updateMemberAndWinning')->name('member.Winning.update');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

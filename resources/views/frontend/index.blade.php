@@ -154,11 +154,11 @@
                     @foreach ($proofs as $item)
                         <div class="result-row">
                             <span class="day-text">🕒 {{ $item->time }}:</span>
-                                @if ($item->status == 'WIN')
-                                    <span class="win-text">WIN <span class="status-icon win-icon">✔</span>
+                            @if ($item->status == 'WIN')
+                                <span class="win-text">WIN <span class="status-icon win-icon">✔</span>
                                 @elseif ($item->status == 'LOSS' || $item->status == 'DRAW')
                                     <span class="loss-text">LOSS <span class="status-icon loss-icon">✖</span>
-                                @endif
+                            @endif
                             </span>
                         </div>
                     @endforeach
@@ -167,25 +167,29 @@
             </div>
 
             <div class="col-12 text-center mt-3 mx-auto">
-
-
                 <div class="proof-card p-2">
-
+                    <div class="proof-title">Our Member and <span class="yellow-highlight">Winning Amount</span> </div>
                     <div class="stats-container">
                         <div class="stat-row">
-                            <span class="stat-value yellow-text">16,530+</span>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <span class="stat-value yellow-text counter"
+                                    data-target="{{ setting()->total_members }}">0</span>
+                                <span class="stat-value yellow-text">+</span>
+                            </div>
                             <span class="divider-line">|</span>
                             <span class="stat-label">Total Members</span>
                         </div>
                         <div class="stat-row">
-                            <span class="stat-value green-text">Tk. 5,182,500+</span>
+                            <div class="d-flex justify-content-start align-items-center">
+                                <span class="stat-value green-text">Tk. </span><span class="stat-value green-text counter"
+                                    data-target="{{ setting()->total_won }}">0</span><span
+                                    class="stat-value green-text">+</span>
+                            </div>
                             <span class="divider-line">|</span>
                             <span class="stat-label">Total Won</span>
                         </div>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-12 text-center mt-3 mx-auto">
@@ -251,5 +255,46 @@
                 }, 1500);
             }
         }
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const counters = document.querySelectorAll('.counter');
+            const speed = 50; // Counter speed (beshi hole slow hobe)
+
+            const startCounting = (targetElement) => {
+                const updateCount = () => {
+                    const target = +targetElement.getAttribute('data-target');
+                    const count = +targetElement.innerText.replace(/,/g, ''); // formatting remove kora
+
+                    // protibare koto barbe seta nirnoy
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        const newValue = Math.ceil(count + inc);
+                        // Number format (comma) shoho set kora
+                        targetElement.innerText = newValue.toLocaleString();
+                        setTimeout(updateCount, 15);
+                    } else {
+                        targetElement.innerText = target.toLocaleString();
+                    }
+                };
+                updateCount();
+            };
+
+            // Scroll Detection Logic
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startCounting(entry.target);
+                        observer.unobserve(entry.target); // ekbar count hoye gele ar hobe na
+                    }
+                });
+            }, {
+                threshold: 0.5
+            }); // Section 50% dekha gele start hobe
+
+            counters.forEach(counter => observer.observe(counter));
+        });
     </script>
 @endsection

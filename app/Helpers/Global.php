@@ -12,7 +12,9 @@ if (!function_exists('setting')) {
                 'site_name',
                 'logo',
                 'favicon',
-                'voice'
+                'voice',
+                'total_members',
+                'total_won',
             ])->first();
         });
     }
