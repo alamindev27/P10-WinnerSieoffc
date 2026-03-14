@@ -86,7 +86,7 @@
                                 <a href="{{ $item->link }}" target="_blank" title="{{ $item->name }}">
                                     <img src="{{ asset($item->icon) }}" alt="" class="img-fluid rounded-circle" style="vertical-align: middle; box-shadow:0px 0px 15px 0px #3498db" width="50" height="50">
                                 </a>
-                                <span class="day-text fw-bold" style="font-size: 18px;">Promo Code - </span>
+                                <span class="day-text fw-bold" style="font-size: 20px;">Promo Code - </span>
                             </span>
                             <span class="win-text ">
                                 <span class="d-flex justify-content-end gap-3 align-items-center">
