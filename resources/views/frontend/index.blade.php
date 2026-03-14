@@ -205,6 +205,15 @@
             </button>
         </div>
 
+        <div class="col-12 text-center mt-3 mx-auto">
+            <div class="proof-card p-2">
+                <div class="proof-title">Join Our Official <span class="yellow-highlight">Teligram Chanel</span> </div>
+                <div class="stats-container">
+                    <a href="{{ social()->link }}" title="{{ social()->name }}">{!! social()->icon !!}</a>
+                </div>
+            </div>
+        </div>
+
         <div class="modal fade" id="registrationModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content custom-modal-bg">
@@ -227,11 +236,13 @@
             </div>
         </div>
 
+
+
     </div>
 
 
 
-    <br><br><br><br><br><br><br><br>
+    <br><br>
 @endsection
 @section('footer')
     <script src="{{ asset('frontend/js/index.js') }}"></script>

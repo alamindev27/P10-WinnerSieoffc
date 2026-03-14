@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use App\Models\Social;
 use Illuminate\Support\Facades\Cache;
 
 if (!function_exists('setting')) {
@@ -18,6 +19,15 @@ if (!function_exists('setting')) {
                 'timer',
                 'updated_at'
             ])->first();
+        });
+    }
+}
+
+if (!function_exists('social')) {
+    function social()
+    {
+        return Cache::rememberForever('social', function () {
+            return Social::first();
         });
     }
 }
