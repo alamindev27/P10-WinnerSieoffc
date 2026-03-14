@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Intro;
 use App\Models\Promo;
+use App\Models\Promotion;
 use App\Models\Proof;
 use App\Models\Social;
 use App\Models\Video;
@@ -87,7 +88,8 @@ class FrontendController extends Controller
             return redirect()->route('frontend.verify.player');
         }
         $datas = Promo::select(['id', 'name', 'icon', 'promo_code'])->get();
+        $promotion = Promotion::first();
 
-        return view('frontend.promotion', compact('promotion', 'datas'));
+        return view('frontend.promotion', compact('promotion', 'datas', 'promotion'));
     }
 }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             IntroSeeder::class,
             SocialSeeder::class,
+            PromotionSeeder::class,
         ]);
     }
 }
