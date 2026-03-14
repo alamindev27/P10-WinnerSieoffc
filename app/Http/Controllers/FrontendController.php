@@ -6,6 +6,7 @@ use App\Models\Intro;
 use App\Models\Promo;
 use App\Models\Promotion;
 use App\Models\Proof;
+use App\Models\Review;
 use App\Models\Social;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -29,10 +30,14 @@ class FrontendController extends Controller
         });
 
         $socials = Cache::rememberForever('socials', function () {
-            return Social::where('status', 'active')->select(['name', 'link', 'subscriber', 'icon'])->get();
+            return Social::select(['name', 'link', 'subscriber', 'icon'])->get();
         });
 
-        return view('frontend.index', compact('intro', 'promos', 'socials', 'proofs'));
+        $reviews = Cache::rememberForever('reviews', function () {
+            return Review::select(['description', 'image'])->get();
+        });
+
+        return view('frontend.index', compact('intro', 'promos', 'socials', 'proofs', 'reviews'));
     }
 
     public function videos()

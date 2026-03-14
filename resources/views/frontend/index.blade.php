@@ -1,6 +1,86 @@
 @extends('frontend.layouts.app')
 @section('head')
     <link rel="stylesheet" href="{{ asset('frontend/css/index.css') }}">
+
+    <style>
+        /* Review Box Adjustment */
+        .review-box {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(0, 150, 255, 0.15);
+            border-radius: 12px;
+        }
+
+        .review-short-text {
+            color: #ffcc00;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+        }
+
+        /* Screenshot Display */
+        .screenshot-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1.5px solid #1a5a8a;
+            /* Blue glowing border */
+            box-shadow: 0 0 15px rgba(0, 150, 255, 0.2);
+        }
+
+        .screenshot-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            /* Jate screenshot pura dekha jay */
+            max-height: 400px;
+            /* Mobile e jeno screen er baire na jay */
+        }
+
+        /* Arrow controls adjustment */
+        .small-icon {
+            width: 25px;
+            height: 25px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+
+        /* Custom Close Button Styling */
+        .btn-close-custom {
+            background: linear-gradient(180deg, #ff4444 0%, #cc0000 100%);
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-close-custom:hover {
+            background: linear-gradient(180deg, #ff6666 0%, #ff0000 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-close-custom:active {
+            transform: translateY(0);
+        }
+
+        /* Modal Content Adjustment */
+        .modal-content {
+            box-shadow: 0 0 30px rgba(0, 150, 255, 0.3);
+        }
+
+        /* Modal text shadow */
+        #modalText {
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+    </style>
 @endsection
 @section('content')
     <div class="container">
@@ -205,6 +285,76 @@
             </button>
         </div>
 
+
+
+
+
+        <div class="col-12 mt-4">
+            <div class="proof-card p-2">
+                <div class="proof-title mb-3 text-center">Winning <span class="yellow-highlight">Screenshots</span></div>
+
+                <div id="screenshotSlider" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @foreach ($reviews as $item)
+                            <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}"
+                                data-description="{{ $item->description }}" data-img-url="{{ asset($item->image) }}"
+                                onclick="openProofModal(this)" style="cursor: pointer;">
+                                <div class="review-box text-center p-2">
+                                    <p class="review-short-text">
+                                        "{{ \Illuminate\Support\Str::limit($item->description, 50) }}"</p>
+                                    <div class="screenshot-wrapper">
+                                        <img src="{{ asset($item->image) }}" class="img-fluid rounded shadow-sm"
+                                            alt="Proof 1">
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#screenshotSlider"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon small-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#screenshotSlider"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon small-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="proofModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" style="background: #0a1e2e; border: 1.5px solid #1a5a8a; border-radius: 20px; overflow: hidden;">
+
+                    <div class="modal-header border-0 pb-0">
+                        <p class="modal-title text-warning w-100 text-justify" id="modalText" style="text-align: justify; text-align-last: justify; margin-bottom: 10px;">Winning Proof</p>
+                    </div>
+
+                    <div class="modal-body text-center pt-2">
+                        <div class="modal-img-container">
+                            <img src="" id="modalImage" class="img-fluid rounded shadow-lg border" style="max-height: 70vh; border: 1px solid #222;">
+                        </div>
+                    </div>
+
+                    <div class="modal-footer border-0 d-flex justify-content-center pt-0 pb-4">
+                        <button type="button" class="btn btn-close-custom" data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
         <div class="col-12 text-center mt-3 mx-auto">
             <div class="proof-card p-2">
                 <div class="proof-title">Join Our Official <span class="yellow-highlight">Teligram Chanel</span> </div>
@@ -235,9 +385,6 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
 
@@ -246,4 +393,15 @@
 @endsection
 @section('footer')
     <script src="{{ asset('frontend/js/index.js') }}"></script>
+    <script>
+        function openProofModal(el) {
+            // Modal er content update kora
+            document.getElementById('modalText').innerText = el.getAttribute('data-description');
+            document.getElementById('modalImage').src = el.getAttribute('data-img-url');
+
+            // Bootstrap Modal open kora
+            var myModal = new bootstrap.Modal(document.getElementById('proofModal'));
+            myModal.show();
+        }
+    </script>
 @endsection
