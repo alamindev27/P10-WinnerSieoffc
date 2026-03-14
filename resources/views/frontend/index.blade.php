@@ -192,7 +192,7 @@
                 <div class="badge-icon-circle">#1</div>
                 <div class="badge-text">
                     <div class="badge-text-top">Bangladesh #1 Free Multi</div>
-                    <div class="badge-text-bottom">Paid Tips 💸 🔥</div>
+                    <div class="badge-text-bottom">Community 💸 🔥</div>
                 </div>
             </div>
 

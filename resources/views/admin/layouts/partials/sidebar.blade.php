@@ -93,6 +93,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link " href="{{ route('admin.promotional.edit', 1) }}"
+                        aria-expanded="false">
+                        <span class="hide-menu">Promotional</span>
+                    </a>
+                </li>
+
 
 
 

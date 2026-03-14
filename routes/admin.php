@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PromoController;
 use App\Http\Controllers\Admin\ProofController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialController;
+use App\Http\Controllers\Admin\PromotionalController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,6 +49,7 @@ Route::name('admin.')->group(function () {
     Route::resource('videos', VideoController::class)->except(['show']);
     Route::resource('proof', ProofController::class)->except(['show']);
     Route::resource('socials', SocialController::class)->except(['show', 'create', 'destroy', 'store']);
+    Route::resource('promotional', PromotionalController::class)->except(['show', 'create', 'destroy', 'store']);
 
 
 });

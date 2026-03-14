@@ -113,17 +113,17 @@
         <div class="row justify-content-center">
             <div class="col-12 text-center mt-3 mx-auto">
                 <div class="proof-card p-2">
-                    <h2 class="section-title-glow my-3 text-center">{{ $promotion->heading_top }}</h2>
+                    <h2 class="section-title-glow my-3 text-center">{{ $promotionData->heading_top }}</h2>
                 </div>
             </div>
             <div class="col-md-12 mt-3">
                 <div class="alert alert-bg-color">
-                    <marquee behavior="scroll" direction="" class="text-white py-0 fw-bold" style="font-size: 17px;">{{ $promotion->animated_text }}</marquee>
+                    <marquee behavior="scroll" direction="" class="text-white py-0 fw-bold" style="font-size: 17px;">{{ $promotionData->animated_text }}</marquee>
                 </div>
             </div>
 
             <div class="col-12">
-                <img src="{{asset($promotion->banner)}}" alt="" class="img-fluid rounded border mb-3 w-100">
+                <img src="{{asset($promotionData->banner)}}" alt="" class="img-fluid rounded border mb-3 w-100">
             </div>
 
 
@@ -180,7 +180,7 @@
 
             <div class="col-12 text-center mt-3 mx-auto">
                 <div class="proof-card p-2">
-                    <h2 class="section-title-glow">{{$promotion->heading_bottom}}</h2>
+                    <h2 class="section-title-glow">{{$promotionData->heading_bottom}}</h2>
                 </div>
             </div>
 
@@ -192,8 +192,8 @@
                     </div>
                 </div>
             </div>
-            
-            
+
+
         </div>
         <br>
     </div>
