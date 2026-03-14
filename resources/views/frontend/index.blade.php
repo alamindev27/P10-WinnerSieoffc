@@ -81,16 +81,16 @@
 
                 <div class="proof-card p-2">
                     @forelse ($promos as $item)
-                        <div class="result-row d-flex justify-content-start gap-2 align-items-center">
-                            <span class="day-text">
+                        <div class="result-row d-flex justify-content-between gap-3 align-items-center px-3">
+                            <span class="day-text d-flex justify-content-start gap-3 align-items-center">
                                 <a href="{{ $item->link }}" target="_blank" title="{{ $item->name }}">
-                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid rounded-circle" style="vertical-align: middle; box-shadow:0px 0px 15px 0px #3498db" width="40" height="40">
+                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid rounded-circle" style="vertical-align: middle; box-shadow:0px 0px 15px 0px #3498db" width="50" height="50">
                                 </a>
+                                <span class="day-text fw-bold" style="">Promo Code - </span>
                             </span>
-                            <span class="day-text fw-bold" style="">Promo Code - </span>
-                            <span class="win-text">
+                            <span class="win-text ">
                                 <span class="">
-                                    <span style="color:#ffd700; font-size:20px;">{{ $item->promo_code }}</span>
+                                    <span style="color:#ffd700; font-size:22px;">{{ $item->promo_code }}</span>
                                     <span class="copy-wrapper"  onclick="copyToClipboard('{{ $item->promo_code }}', this)">
                                         <span class="copy-tooltip">Copied!</span>
                                         <span class="copy-btn" style="cursor: pointer;">
