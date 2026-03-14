@@ -3,14 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Promo;
 use App\Models\Setting;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $totalPromos = Promo::count();
+        $totalVideos = Video::count();
+
+        return view('admin.dashboard', compact('totalPromos', 'totalVideos'));
     }
 
     public function editVoice()
