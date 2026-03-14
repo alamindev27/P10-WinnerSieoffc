@@ -84,14 +84,16 @@
                         <div class="result-row d-flex justify-content-between gap-3 align-items-center px-3">
                             <span class="day-text d-flex justify-content-start gap-3 align-items-center">
                                 <a href="{{ $item->link }}" target="_blank" title="{{ $item->name }}">
-                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid rounded-circle" style="vertical-align: middle; box-shadow:0px 0px 15px 0px #3498db" width="40" height="40">
+                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid rounded-circle"
+                                        style="vertical-align: middle; box-shadow:0px 0px 15px 0px #3498db" width="40"
+                                        height="40">
                                 </a>
                                 <span class="day-text fw-bold" style="font-size: 16px;">Promo Code - </span>
                             </span>
                             <span class="win-text ">
                                 <span class="d-flex justify-content-end gap-3 align-items-center">
-                                    <span style="color:#ffd700; font-size:20px;">{{ $item->promo_code }}</span>
-                                    <span class="copy-wrapper"  onclick="copyToClipboard('{{ $item->promo_code }}', this)">
+                                    <span style="color:#ffd700; font-size:22px;">{{ $item->promo_code }}</span>
+                                    <span class="copy-wrapper" onclick="copyToClipboard('{{ $item->promo_code }}', this)">
                                         <span class="copy-tooltip">Copied!</span>
                                         <span class="copy-btn" style="cursor: pointer;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
@@ -149,20 +151,17 @@
                     <div class="proof-title">Proof Your Bankroll in <span class="yellow-highlight">3 Easy</span>
                     </div>
 
-                    <div class="result-row">
-                        <span class="day-text">🕒 Yesterday:</span>
-                        <span class="win-text">WIN <span class="status-icon win-icon">✔</span></span>
-                    </div>
-
-                    <div class="result-row">
-                        <span class="day-text">🕒 2 days ago:</span>
-                        <span class="win-text">WIN <span class="status-icon win-icon">✔</span></span>
-                    </div>
-
-                    <div class="result-row">
-                        <span class="day-text">🕒 3 days ago:</span>
-                        <span class="loss-text">LOSS <span class="status-icon loss-icon">✖</span></span>
-                    </div>
+                    @foreach ($proofs as $item)
+                        <div class="result-row">
+                            <span class="day-text">🕒 {{ $item->time }}:</span>
+                                @if ($item->status == 'WIN')
+                                    <span class="win-text">WIN <span class="status-icon win-icon">✔</span>
+                                @elseif ($item->status == 'LOSS' || $item->status == 'DRAW')
+                                    <span class="loss-text">LOSS <span class="status-icon loss-icon">✖</span>
+                                @endif
+                            </span>
+                        </div>
+                    @endforeach
                 </div>
 
             </div>

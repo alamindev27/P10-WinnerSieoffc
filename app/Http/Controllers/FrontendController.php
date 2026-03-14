@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Intro;
 use App\Models\Promo;
+use App\Models\Proof;
 use App\Models\Social;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -22,11 +23,15 @@ class FrontendController extends Controller
             return Promo::select(['name', 'icon', 'link', 'promo_code'])->get();
         });
 
+        $proofs = Cache::rememberForever('proofs', function () {
+            return Proof::select(['time', 'status'])->latest()->limit(3)->get();
+        });
+
         $socials = Cache::rememberForever('socials', function () {
             return Social::where('status', 'active')->select(['name', 'link', 'subscriber', 'icon'])->get();
         });
 
-        return view('frontend.index', compact('intro', 'promos', 'socials'));
+        return view('frontend.index', compact('intro', 'promos', 'socials', 'proofs'));
     }
 
     public function videos()

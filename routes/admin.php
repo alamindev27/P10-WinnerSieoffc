@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\IntroController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromoController;
+use App\Http\Controllers\Admin\ProofController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialController;
 use App\Http\Controllers\VideoController;
@@ -39,6 +40,7 @@ Route::name('admin.')->group(function () {
     Route::resource('promos', PromoController::class)->except(['show']);
     Route::resource('intro', IntroController::class)->except(['create', 'show', 'destroy', 'store']);
     Route::resource('videos', VideoController::class)->except(['show']);
+    Route::resource('proof', ProofController::class)->except(['show']);
     Route::resource('socials', SocialController::class)->except(['show', 'create', 'destroy', 'store']);
 
 
