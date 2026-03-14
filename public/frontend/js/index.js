@@ -79,38 +79,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+
+// Timer Logic with Admin Change Detection
 document.addEventListener("DOMContentLoaded", () => {
-    // HTML theke initial value gulo neya
-    let h = parseInt(document.getElementById('hours').innerText);
-    let m = parseInt(document.getElementById('minutes').innerText);
-    let s = parseInt(document.getElementById('seconds').innerText);
+    const timerContainer = document.getElementById('timerContainer');
+    const currentAdminId = timerContainer.getAttribute('data-id'); // Admin er unique ID
+    const hDisplay = document.getElementById('hours');
+    const mDisplay = document.getElementById('minutes');
+    const sDisplay = document.getElementById('seconds');
+
+    // 1. Check kora Admin data change koreche kina
+    let savedAdminId = localStorage.getItem('timerConfigId');
+    let savedTime = localStorage.getItem('remainingTime');
+
+    let totalSeconds;
+
+    // Jodi Admin ID mile jay ebong ager save kora time thake
+    if (savedAdminId === currentAdminId && savedTime !== null) {
+        totalSeconds = parseInt(savedTime);
+    } else {
+        // Jodi Admin change kore thake, tobe Storage reset kore notun data nebe
+        let h = parseInt(hDisplay.innerText);
+        let m = parseInt(mDisplay.innerText);
+        let s = parseInt(sDisplay.innerText);
+        totalSeconds = (h * 3600) + (m * 60) + s;
+
+        // Notun configuration save kora
+        localStorage.setItem('timerConfigId', currentAdminId);
+        localStorage.setItem('remainingTime', totalSeconds);
+    }
 
     const timer = setInterval(() => {
-        // Jodi shob 0 hoye jay tobe stop hobe
-        if (h === 0 && m === 0 && s === 0) {
+        if (totalSeconds <= 0) {
             clearInterval(timer);
+            localStorage.setItem('remainingTime', 0);
+            updateDisplay(0);
             return;
         }
 
-        if (s > 0) {
-            s--; // Second kombe
-        } else {
-            if (m > 0) {
-                s = 59; // Second 59 e back korbe
-                m--;    // Minute kombe
-            } else {
-                if (h > 0) {
-                    s = 59;
-                    m = 59;
-                    h--; // Hour kombe
-                }
-            }
-        }
+        totalSeconds--;
+        localStorage.setItem('remainingTime', totalSeconds);
+        updateDisplay(totalSeconds);
+    }, 1000);
 
-        // UI Update kora (Double digit format: 05, 09 ityadi)
-        document.getElementById('hours').innerText = h.toString().padStart(2, '0');
-        document.getElementById('minutes').innerText = m.toString().padStart(2, '0');
-        document.getElementById('seconds').innerText = s.toString().padStart(2, '0');
+    function updateDisplay(seconds) {
+        let h = Math.floor(seconds / 3600);
+        let m = Math.floor((seconds % 3600) / 60);
+        let s = seconds % 60;
 
-    }, 1000); // Protike 1 second por por update hobe
+        hDisplay.innerText = h.toString().padStart(2, '0');
+        mDisplay.innerText = m.toString().padStart(2, '0');
+        sDisplay.innerText = s.toString().padStart(2, '0');
+    }
 });

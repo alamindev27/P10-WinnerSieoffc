@@ -16,6 +16,7 @@ if (!function_exists('setting')) {
                 'total_members',
                 'total_won',
                 'timer',
+                'updated_at'
             ])->first();
         });
     }

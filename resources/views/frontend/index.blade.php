@@ -55,18 +55,12 @@
             </div>
 
             <div class="col-12 text-center mt-3 mx-auto">
-                <div class="timer-box">
-                    <div class="time-unit">
-                        <span class="green-num" id="hours">{{ setting()->timer['hours'] }}</span> Hrs
-                    </div>
+                <div class="timer-box" id="timerContainer" data-id="{{ setting()->updated_at }}">
+                    <div class="time-unit"><span class="green-num" id="hours">{{ setting()->timer['hours'] }}</span> Hrs</div>
                     <div class="timer-divider">|</div>
-                    <div class="time-unit">
-                        <span class="purple-num" id="minutes">{{ setting()->timer['minutes'] }}</span> Min
-                    </div>
+                    <div class="time-unit"><span class="purple-num" id="minutes">{{ setting()->timer['minutes'] }}</span> Min</div>
                     <div class="timer-divider">|</div>
-                    <div class="time-unit">
-                        <span class="yellow-num" id="seconds">{{ setting()->timer['seconds'] }}</span> Sec
-                    </div>
+                    <div class="time-unit"><span class="yellow-num" id="seconds">{{ setting()->timer['seconds'] }}</span> Sec</div>
                 </div>
             </div>
 
