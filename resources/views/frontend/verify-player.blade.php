@@ -78,12 +78,6 @@
         }
 
 
-
-
-
-
-
-
         .custom-input-glow:focus {
             box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
             background-color: #000;
@@ -132,10 +126,8 @@
                             </h5>
                             <div class="row justify-content-center">
                                 @foreach ($datas as $item)
-                                    <div class="col-6 col-md-3 bookmaker-logo text-center mt-3 px-1"
-                                        onclick="setBookmarker('{{ $item->id }}', this)">
-                                        <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}" class="img-fluid"
-                                            style="height: 40px; width:100%; object-fit: contain; cursor: pointer;">
+                                    <div class="col bookmaker-logo text-center mt-3 px-1" onclick="setBookmarker('{{ $item->id }}', this)">
+                                        <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}" class="img-fluid rounded border" style="height: 40px; width:40px;  object-fit: contain; cursor: pointer;">
                                     </div>
                                 @endforeach
                             </div>
@@ -454,8 +446,8 @@
                 });
 
                 element.style.filter = 'grayscale(0%) drop-shadow(0 0 8px #00d2ff)';
-                element.style.border = '1px solid #00d2ff';
-                element.style.borderRadius = '8px';
+                // element.style.border = '1px solid #00d2ff';
+                // element.style.borderRadius = '8px';
                 element.classList.add('selected-bookie');
 
                 // ভ্যালিডেশন ট্রিগার করার জন্য কাস্টম ইভেন্ট

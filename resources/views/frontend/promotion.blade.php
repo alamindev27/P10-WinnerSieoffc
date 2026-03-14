@@ -120,11 +120,10 @@
 
             @forelse ($datas as $item)
                 <div class="col-lg-6 mt-3">
-                    <img src="{{ $item->banner_image ? asset($item->banner_image) : 'https://placehold.co/708x310?text=' . $item->name . '  ' }}"
-                        alt="{{ $item->name }}" class="img-fluid rounded border mb-3">
+                    <img src="{{ $item->banner_image ? asset($item->banner_image) : 'https://placehold.co/708x310?text=' . $item->name . '  ' }}" alt="{{ $item->name }}" class="img-fluid rounded border mb-3">
                     <div class="promo-code-box d-flex align-items-center justify-content-between text-center gap-1" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#promoErrorModal">
                         <div class="text-center mx-auto">
-                            <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}" style="" class="img-fluid">
+                            <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}" style="" class="img-fluid rounded-circle py-1" width="50" height="50">
                         </div>
                         <p class="text-nowrap mb-0 fw-bold" style="font-size: 20px;">Get Code</p>
                         <div class="text-center mx-auto">

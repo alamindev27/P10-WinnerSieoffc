@@ -4,7 +4,7 @@
     <style>
         /* YouTube Specific Styles */
         .youtube-list {
-            background-color: var(--dark-gray-color);
+            /* background-color: var(--dark-gray-color); */
             /* #121212 */
         }
 
