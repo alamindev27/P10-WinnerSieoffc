@@ -90,7 +90,7 @@
                             </span>
                             <span class="win-text ">
                                 <span class="d-flex justify-content-end gap-3 align-items-center">
-                                    <span style="color:#ffd700; font-size:22px;">{{ $item->promo_code }}</span>
+                                    <span style="color:#ffd700; font-size:20px;">{{ $item->promo_code }}</span>
                                     <span class="copy-wrapper"  onclick="copyToClipboard('{{ $item->promo_code }}', this)">
                                         <span class="copy-tooltip">Copied!</span>
                                         <span class="copy-btn" style="cursor: pointer;">
