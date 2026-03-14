@@ -3,22 +3,24 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/index.css') }}">
     <style>
         .watch-btn {
-            background: #ffffff;
-            color: #000;
-            border: 2px solid #000;
-            padding: 12px 28px;
+            background: #ff0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
             font-size: 18px;
             font-weight: 600;
             border-radius: 40px;
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            text-transform: uppercase;
+            box-shadow: 0px 0px 20px 0px #ff0000;
             transition: 0.3s;
         }
 
         .watch-btn .icon {
-            background: #000;
-            color: #fff;
+            background: #fff;
+            color: #ff0000;
             width: 35px;
             height: 35px;
             border-radius: 50%;
@@ -29,13 +31,15 @@
         }
 
         .watch-btn:hover {
-            background: #000;
+            background: #cc0000;
             color: #fff;
+            box-shadow: none;
         }
 
         .watch-btn:hover .icon {
             background: #fff;
             color: #000;
+            box-shadow: none;
         }
     </style>
 @endsection
@@ -103,11 +107,7 @@
         </div>
 
         <div class="col-12 text-center mt-3 mx-auto">
-            <p class="text-white mb-1">একাউন্ট খোলার Tutorials দেখুন</p>
-
-            {{-- <button style="background: transparent;box-shadow: 0px 0px 20px 0px #fff;" class="border-0" onclick="return window.location.href='{{ route('frontend.videos') }}'">
-                    <img src="{{asset('frontend/img/watch-now-btn.jpg')}}" alt="" class="img-fluid" width="120" style="">
-                </button> --}}
+            <p class="text-white mb-2">একাউন্ট খোলার Tutorials দেখুন</p>
             <div class="text-center">
                 <button class="watch-btn" onclick="return window.location.href='{{ route('frontend.videos') }}'">
                     <span class="icon">▶</span>
