@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
+use App\Models\Intro;
 use App\Models\Promo;
 use App\Models\Social;
 use App\Models\Video;
@@ -14,8 +14,8 @@ class FrontendController extends Controller
     public function index()
     {
 
-        $banner = Cache::rememberForever('banner', function () {
-            return Banner::select(['heading_1', 'heading_2', 'short_description', 'image'])->first();
+        $intro = Cache::rememberForever('intro', function () {
+            return Intro::select(['heading_1', 'heading_2', 'animated_text', 'image', 'winning_link'])->first();
         });
 
         $promos = Cache::rememberForever('promos', function () {
@@ -26,7 +26,7 @@ class FrontendController extends Controller
             return Social::where('status', 'active')->select(['name', 'link', 'subscriber', 'icon'])->get();
         });
 
-        return view('frontend.index', compact('banner', 'promos', 'socials'));
+        return view('frontend.index', compact('intro', 'promos', 'socials'));
     }
 
     public function videos()

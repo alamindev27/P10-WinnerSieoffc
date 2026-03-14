@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banner;
+use App\Models\Intro;
 use Illuminate\Http\Request;
 
-class BannerController extends Controller
+class IntroController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Banner::first();
-        return view('admin.banner.index', compact('data'));
+        $data = Intro::first();
+        return view('admin.intro.index', compact('data'));
     }
 
     /**
@@ -46,8 +46,8 @@ class BannerController extends Controller
      */
     public function edit(string $id)
     {
-        $data = Banner::find($id);
-        return view('admin.banner.edit', compact('data'));
+        $data = Intro::find($id);
+        return view('admin.intro.edit', compact('data'));
     }
 
     /**
@@ -56,17 +56,18 @@ class BannerController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'animated_text' => 'required|string|max:255',
             'heading_1' => 'required|string|max:255',
             'heading_2' => 'required|string|max:255',
-            'short_description' => 'required|string|max:255',
+            'winning_link' => 'required|url',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $banner = Banner::findOrFail($id);
+        $intro = Intro::findOrFail($id);
 
         if ($request->hasFile('image')) {
 
-            $currentImage = $banner->image;
+            $currentImage = $intro->image;
 
             // default image hole delete korbe na
             if ($currentImage !== '/default/hero-bg.jpg' && file_exists(public_path($currentImage))) {
@@ -80,17 +81,18 @@ class BannerController extends Controller
             $request->image->move(public_path('uploads/hero'), $imageName);
 
             // save path in db
-            $banner->image = '/uploads/hero/' . $imageName;
+            $intro->image = '/uploads/hero/' . $imageName;
         }
 
-        $banner->heading_1 = $request->heading_1;
-        $banner->heading_2 = $request->heading_2;
-        $banner->short_description = $request->short_description;
+        $intro->heading_1 = $request->heading_1;
+        $intro->heading_2 = $request->heading_2;
+        $intro->animated_text = $request->animated_text;
+        $intro->winning_link = $request->winning_link;
 
-        $banner->save();
+        $intro->save();
 
-        return redirect()->route('admin.banners.index')
-            ->with('success', 'Banner updated successfully');
+        return redirect()->route('admin.intro.index')
+            ->with('success', 'Intro updated successfully');
     }
 
     /**

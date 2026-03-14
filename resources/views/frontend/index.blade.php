@@ -4,88 +4,19 @@
 @endsection
 @section('content')
 
-
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <section class="hero-banner" style="background-image: url('{{ asset("frontend/img/1xbet.webp") }}');">
-                    <div class="banner-overlay"></div>
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center text-center">
-                            <div class="col-md-10 offset-md-1">
-                                <div class="hero-content">
-                                    <h1 class="hero-title fw-bold mb-3 text-white">
-                                        Revolutionizing Digital Futures
-                                    </h1>
-                                    <p class="hero-description mx-auto mb-4">
-                                        Unlock the potential of modern web development with innovative solutions. We build
-                                        scalable, high-performance applications.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <div class="carousel-item">
-                <section class="hero-banner"
-                    style="background-image: url('{{ asset("frontend/img/megapari.webp") }}');">
-                    <div class="banner-overlay"></div>
-                    <div class="container h-100">
-                        <div class="row h-100 align-items-center text-center">
-                            <div class="col-md-10 offset-md-1">
-                                <div class="hero-content">
-                                    <h1 class="hero-title fw-bold mb-3 text-white">Building Secure Systems</h1>
-                                    <p class="hero-description mx-auto mb-4">High-end security and performance for your
-                                        business applications with modern architecture.</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev"
-            style="z-index: 20;">
-            <span class="carousel-control-prev-icon" aria-hidden="true"
-                style="width: 2rem; height: 2rem; "></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next"
-            style="z-index: 20;">
-            <span class="carousel-control-next-icon" aria-hidden="true"
-                style="width: 2rem; height: 2rem; "></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="container">
         <div class="row">
 
+            <div class="col-12">
+                <div class="text-white mt-3 bg-dark rounded py-2">
+                    <marquee behavior="scroll" direction="left" class="fw-bold">{{ $intro->animated_text }}</marquee>
+                </div>
+            </div>
+
 
             <div class="col-12 text-center mt-3 mx-auto">
-                <div class="title-top">Bangladesh Trusted</div>
-                <div class="sub-title">Free Multi Tips</div>
+                <div class="bengali-text">{{ $intro->heading_1 }}</div>
+                <div class="amount-text">{{ $intro->heading_2 }}</div>
             </div>
 
 
@@ -93,7 +24,7 @@
 
 
             <div class="col-12 col-lg-6 mx-auto">
-                <img src="{{ asset($banner->image) }}" alt="" class="img-fluid w-100"
+                <img src="{{ asset($intro->image) }}" alt="" class="img-fluid w-100"
                     style="border: 2px solid #3498db; border-radius: 10px;">
             </div>
 
@@ -102,7 +33,7 @@
                 <button class="claim-btn">
                     Claim Today's Free Multi 🔥
                 </button>
-                <a href="#" class="footer-link">
+                <a href="{{ $intro->winning_link }}" target="_blank" class="footer-link">
                     {{-- video icon --}}
                     Previous উইনিং প্রুফ চেক করুন</a>
 
@@ -146,11 +77,11 @@
                         <div class="result-row">
                             <span class="day-text">
                                 <a href="{{ $item->link }}" target="_blank" title="{{ $item->name }}">
-                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid" style="max-width: 90px; vertical-align: middle;">
+                                    <img src="{{ asset($item->icon) }}" alt="" class="img-fluid"
+                                        style="max-width: 90px; vertical-align: middle;">
                                 </a>
                             </span>
-                            <span class="win-text" style="font-size: 13px;">PROMO CODE</span>
-                            <span class="win-text"><span class="">{{ $item->promo_code }} <span
+                            <span class="win-text">PROMO CODE: <span class="">{{ $item->promo_code }} <span
                                         class="copy-wrapper" onclick="copyToClipboard('{{ $item->promo_code }}', this)">
                                         <span class="copy-tooltip">Copied!</span>
                                         <span class="copy-btn" style="cursor: pointer;">
@@ -312,3 +243,4 @@
         }
     </script>
 @endsection
+

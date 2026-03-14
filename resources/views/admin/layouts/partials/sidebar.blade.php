@@ -38,9 +38,9 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link " href="{{ route('admin.banners.index') }}"
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link " href="{{ route('admin.intro.index') }}"
                         aria-expanded="false">
-                        <span class="hide-menu">Banners</span>
+                        <span class="hide-menu">Intro</span>
                     </a>
                 </li>
 

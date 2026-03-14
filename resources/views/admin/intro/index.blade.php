@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('head')
-    <title>Banner</title>
+    <title>Intro</title>
     <style>
         #zero_config td,
         #zero_config th {
@@ -14,7 +14,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Banner</h4>
+                <h4 class="page-title">Intro</h4>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Banner</h4>
+                        <h4 class="card-title">Intro</h4>
 
                         <div class="table-responsive">
                             <table id="zero_config" class="table table-striped table-bordered">
@@ -49,7 +49,7 @@
                                                 height="40">
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.banners.edit', $data->id) }}"
+                                            <a href="{{ route('admin.intro.edit', $data->id) }}"
                                                 class="btn btn-sm btn-primary">Edit</a>
 
                                         </td>
