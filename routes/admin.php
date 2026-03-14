@@ -21,6 +21,9 @@ Route::name('admin.')->group(function () {
 
         Route::get('/our-members-and-winning-amount', 'editMemberAndWinning')->name('member.Winning.edit');
         Route::post('/our-members-and-winning-amount', 'updateMemberAndWinning')->name('member.Winning.update');
+
+        Route::get('/timer', 'editTimer')->name('timer.edit');
+        Route::post('/timer', 'updateTimer')->name('timer.update');
     });
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

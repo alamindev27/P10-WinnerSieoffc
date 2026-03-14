@@ -69,4 +69,28 @@ class DashboardController extends Controller
 
         return redirect()->route('admin.member.Winning.edit')->with('success', 'Member and winning amount updated successfully.');
     }
+
+    public function editTimer()
+    {
+        return view('admin.setting.edit-timer');
+    }
+
+    public function updateTimer(Request $request)
+    {
+        $request->validate([
+            'hours' => 'required|integer|min:0',
+            'minutes' => 'required|integer|min:0',
+            'seconds' => 'required|integer|min:0',
+        ]);
+
+        Setting::find(1)->update([
+            'timer' => [
+                'hours' => $request->hours,
+                'minutes' => $request->minutes,
+                'seconds' => $request->seconds,
+            ],
+        ]);
+
+        return redirect()->route('admin.timer.edit')->with('success', 'Timer updated successfully.');
+    }
 }

@@ -15,6 +15,7 @@ if (!function_exists('setting')) {
                 'voice',
                 'total_members',
                 'total_won',
+                'timer',
             ])->first();
         });
     }

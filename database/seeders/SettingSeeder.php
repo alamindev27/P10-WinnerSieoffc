@@ -18,6 +18,11 @@ class SettingSeeder extends Seeder
             [
                 'author_name' => 'MD. Al-Amin',
                 'voice' => 'default/default-voice.mp3',
+                'timer' => json_encode([
+                    'hours' => 10,
+                    'minutes' => 0,
+                    'seconds' => 0,
+                ]),
             ]
         ]);
 
