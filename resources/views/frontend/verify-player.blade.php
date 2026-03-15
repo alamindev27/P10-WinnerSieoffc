@@ -1,8 +1,6 @@
 @extends('frontend.layouts.app')
 @section('head')
     <style>
-
-
         .section-title-glow {
             color: var(--deep-color);
             font-size: 2rem;
@@ -98,317 +96,324 @@
             opacity: 1;
             transform: translateY(-2px);
         }
+
         .proof-card {
-    border: 1px solid #1a5a8a;
-    border-radius: 15px;
-    background: rgba(0, 5, 15, 0.8);
-    box-shadow: inset 0 0 15px rgba(0, 150, 255, 0.2);
-}
+            border: 1px solid #1a5a8a;
+            border-radius: 15px;
+            background: rgba(0, 5, 15, 0.8);
+            box-shadow: inset 0 0 15px rgba(0, 150, 255, 0.2);
+        }
     </style>
 @endsection
 @section('content')
-<div class="container">
-    <br><br>
-    <div class="row">
-        <div class="col-12">
-            <div class="proof-card p-3">
-                <h2 class="section-title-glow mb-3">Select your infos</h2>
-                <form id="infoForm" action="{{ route('frontend.player.promotion') }}" method="POST">
-                    @csrf
-                    <input type="text" id="promo_id" name="promo_id" value="" hidden>
-                
-                    <div class="info-form-wrapper mx-auto text-start">
-                
-                        <div class="info-step mb-3">
-                            <h5 class="step-label">
-                                <span class="d-block">1. Select your bookmaker.</span>
-                                <small class="d-block">১) কোন সাইট এ একাউন্ট খুলেছেন?</small>
-                            </h5>
-                            <div class="row justify-content-center">
-                                @foreach ($datas as $item)
-                                    <div class="col bookmaker-logo text-center mt-3 px-1" onclick="setBookmarker('{{ $item->id }}', this)">
-                                        <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}" class="img-fluid rounded border" style="height: 40px; width:40px;  object-fit: contain; cursor: pointer;">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <div class="proof-card p-3">
+                    <h2 class="section-title-glow mb-3">Select your infos</h2>
+                    <form id="infoForm" action="{{ route('frontend.player.promotion') }}" method="POST">
+                        @csrf
+                        <input type="text" id="promo_id" name="promo_id" value="" hidden>
+
+                        <div class="info-form-wrapper mx-auto text-start">
+
+                            <div class="info-step mb-3">
+                                <h5 class="step-label">
+                                    <span class="d-block">1. Select your bookmaker.</span>
+                                    <small class="d-block">১) কোন সাইট এ একাউন্ট খুলেছেন?</small>
+                                </h5>
+                                <div class="row justify-content-center">
+                                    @foreach ($datas as $item)
+                                        <div class="col bookmaker-logo text-center mt-3 px-1"
+                                            onclick="setBookmarker('{{ $item->id }}', this)">
+                                            <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}"
+                                                class="img-fluid rounded border"
+                                                style="height: 40px; width:40px;  object-fit: contain; cursor: pointer;">
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <span id="promo_error" class="text-danger small" style="display:none;">❌ Please select a
+                                    bookmaker</span>
+                                @error('promo_id')
+                                    <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="info-step mb-3">
+                                <h5 class="step-label">
+                                    <span class="d-block">2. Enter Player ID</span>
+                                    <small class="d-block">২) প্লেয়ার একাউন্ট নাম্বার দিন</small>
+                                </h5>
+                                <div class="d-flex flex-column gap-1 mt-3">
+                                    <div class="d-flex gap-2">
+                                        <input type="text" id="player_id_input" class="form-control custom-input-glow"
+                                            placeholder="Enter 10-digit ID (> 1419719000)" name="player_id" required
+                                            autocomplete="off">
+                                        <button type="button" class="btn-copy-icon">
+                                            <span class="clipboard-emoji">📋</span>
+                                        </button>
                                     </div>
-                                @endforeach
-                            </div>
-                            <span id="promo_error" class="text-danger small" style="display:none;">❌ Please select a
-                                bookmaker</span>
-                            @error('promo_id')
-                                <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
-                            @enderror
-                        </div>
-                
-                        <div class="info-step mb-3">
-                            <h5 class="step-label">
-                                <span class="d-block">2. Enter Player ID</span>
-                                <small class="d-block">২) প্লেয়ার একাউন্ট নাম্বার দিন</small>
-                            </h5>
-                            <div class="d-flex flex-column gap-1 mt-3">
-                                <div class="d-flex gap-2">
-                                    <input type="text" id="player_id_input" class="form-control custom-input-glow"
-                                        placeholder="Enter 10-digit ID (> 1419719000)" name="player_id" required
-                                        autocomplete="off">
-                                    <button type="button" class="btn-copy-icon">
-                                        <span class="clipboard-emoji">📋</span>
-                                    </button>
+                                    <span id="player_id_error" class="text-danger small"
+                                        style="display:none; font-weight: 500;"></span>
+                                    @error('player_id')
+                                        <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <span id="player_id_error" class="text-danger small"
-                                    style="display:none; font-weight: 500;"></span>
-                                @error('player_id')
-                                    <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
-                                @enderror
                             </div>
-                        </div>
-                
-                        <div class="info-step mb-3">
-                            <h5 class="step-label">
-                                <span class="d-block">3. Deposit Amount</span>
-                                <small class="d-block">৩) ডিপোজিট পরিমাণ দিন</small>
-                            </h5>
-                            <div class="d-flex flex-column gap-1 mt-3">
-                                <div class="d-flex gap-2">
-                                    <input type="number" id="deposit_amount_input"
-                                        class="form-control custom-input-glow" placeholder="Enter deposit amount"
-                                        name="deposit_amount" required autocomplete="off">
+
+                            <div class="info-step mb-3">
+                                <h5 class="step-label">
+                                    <span class="d-block">3. Deposit Amount</span>
+                                    <small class="d-block">৩) ডিপোজিট পরিমাণ দিন</small>
+                                </h5>
+                                <div class="d-flex flex-column gap-1 mt-3">
+                                    <div class="d-flex gap-2">
+                                        <input type="number" id="deposit_amount_input"
+                                            class="form-control custom-input-glow" placeholder="Enter deposit amount"
+                                            name="deposit_amount" required autocomplete="off">
+                                    </div>
+                                    <span id="deposit_amount_error" class="text-danger small"
+                                        style="display:none; font-weight: 500;"></span>
+                                    @error('deposit_amount')
+                                        <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <span id="deposit_amount_error" class="text-danger small"
-                                    style="display:none; font-weight: 500;"></span>
-                                @error('deposit_amount')
-                                    <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
-                                @enderror
+                            </div>
+
+                            <div class="info-step mb-3">
+                                <h5 class="step-label">
+                                    <span class="d-block">4. Select Server</span>
+                                    <small class="d-block">৪) সার্ভার/দেশ সিলেক্ট করুন</small>
+                                </h5>
+                                <div class="mt-3">
+                                    <select id="server_select" class="form-select custom-input-glow" name="server_name"
+                                        required>
+                                        <option value="" selected disabled>Select Server</option>
+                                        <option value="dz">🇩🇿 Algeria</option>
+                                        <option value="ao">🇦🇴 Angola</option>
+                                        <option value="bj">🇧🇯 Benin</option>
+                                        <option value="bw">🇧🇼 Botswana</option>
+                                        <option value="bf">🇧🇫 Burkina Faso</option>
+                                        <option value="bi">🇧🇮 Burundi</option>
+                                        <option value="cm">🇨🇲 Cameroon</option>
+                                        <option value="cv">🇨🇻 Cape Verde</option>
+                                        <option value="cf">🇨🇫 Central African Republic</option>
+                                        <option value="td">🇹🇩 Chad</option>
+                                        <option value="km">🇰🇲 Comoros</option>
+                                        <option value="cg">🇨🇬 Congo</option>
+                                        <option value="cd">🇨🇩 Congo (Democratic Republic)</option>
+                                        <option value="ci">🇨🇮 Côte d’Ivoire</option>
+                                        <option value="dj">🇩🇯 Djibouti</option>
+                                        <option value="eg">🇪🇬 Egypt</option>
+                                        <option value="gq">🇬🇶 Equatorial Guinea</option>
+                                        <option value="er">🇪🇷 Eritrea</option>
+                                        <option value="sz">🇸🇿 Eswatini</option>
+                                        <option value="et">🇪🇹 Ethiopia</option>
+                                        <option value="ga">🇬🇦 Gabon</option>
+                                        <option value="gm">🇬🇲 Gambia</option>
+                                        <option value="gh">🇬🇭 Ghana</option>
+                                        <option value="gn">🇬🇳 Guinea</option>
+                                        <option value="gw">🇬🇼 Guinea-Bissau</option>
+                                        <option value="ke">🇰🇪 Kenya</option>
+                                        <option value="ls">🇱🇸 Lesotho</option>
+                                        <option value="lr">🇱🇷 Liberia</option>
+                                        <option value="ly">🇱🇾 Libya</option>
+                                        <option value="mg">🇲🇬 Madagascar</option>
+                                        <option value="mw">🇲🇼 Malawi</option>
+                                        <option value="ml">🇲🇱 Mali</option>
+                                        <option value="mr">🇲🇷 Mauritania</option>
+                                        <option value="mu">🇲🇺 Mauritius</option>
+                                        <option value="ma">🇲🇦 Morocco</option>
+                                        <option value="mz">🇲🇿 Mozambique</option>
+                                        <option value="na">🇳🇦 Namibia</option>
+                                        <option value="ne">🇳🇪 Niger</option>
+                                        <option value="ng">🇳🇬 Nigeria</option>
+                                        <option value="re">🇷🇪 Réunion</option>
+                                        <option value="rw">🇷🇼 Rwanda</option>
+                                        <option value="st">🇸🇹 São Tomé and Príncipe</option>
+                                        <option value="sn">🇸🇳 Senegal</option>
+                                        <option value="sc">🇸🇨 Seychelles</option>
+                                        <option value="sl">🇸🇱 Sierra Leone</option>
+                                        <option value="so">🇸🇴 Somalia</option>
+                                        <option value="za">🇿🇦 South Africa</option>
+                                        <option value="ss">🇸🇸 South Sudan</option>
+                                        <option value="sd">🇸🇩 Sudan</option>
+                                        <option value="tz">🇹🇿 Tanzania</option>
+                                        <option value="tg">🇹🇬 Togo</option>
+                                        <option value="tn">🇹🇳 Tunisia</option>
+                                        <option value="ug">🇺🇬 Uganda</option>
+                                        <option value="zm">🇿🇲 Zambia</option>
+                                        <option value="zw">🇿🇼 Zimbabwe</option>
+
+                                        <option value="af">🇦🇫 Afghanistan</option>
+                                        <option value="am">🇦🇲 Armenia</option>
+                                        <option value="az">🇦🇿 Azerbaijan</option>
+                                        <option value="bh">🇧🇭 Bahrain</option>
+                                        <option value="bd">🇧🇩 Bangladesh</option>
+                                        <option value="bt">🇧🇹 Bhutan</option>
+                                        <option value="bn">🇧🇳 Brunei</option>
+                                        <option value="kh">🇰🇭 Cambodia</option>
+                                        <option value="cn">🇨🇳 China</option>
+                                        <option value="cy">🇨🇾 Cyprus</option>
+                                        <option value="ge">🇬🇪 Georgia</option>
+                                        <option value="hk">🇭🇰 Hong Kong</option>
+                                        <option value="in">🇮🇳 India</option>
+                                        <option value="id">🇮🇩 Indonesia</option>
+                                        <option value="ir">🇮🇷 Iran</option>
+                                        <option value="iq">🇮🇶 Iraq</option>
+                                        <option value="il">🇮🇱 Israel</option>
+                                        <option value="jp">🇯🇵 Japan</option>
+                                        <option value="jo">🇯🇴 Jordan</option>
+                                        <option value="kz">🇰🇿 Kazakhstan</option>
+                                        <option value="kw">🇰🇼 Kuwait</option>
+                                        <option value="kg">🇰🇬 Kyrgyzstan</option>
+                                        <option value="la">🇱🇦 Laos</option>
+                                        <option value="lb">🇱🇧 Lebanon</option>
+                                        <option value="my">🇲🇾 Malaysia</option>
+                                        <option value="mv">🇲🇻 Maldives</option>
+                                        <option value="mn">🇲🇳 Mongolia</option>
+                                        <option value="mm">🇲🇲 Myanmar</option>
+                                        <option value="np">🇳🇵 Nepal</option>
+                                        <option value="om">🇴🇲 Oman</option>
+                                        <option value="pk">🇵🇰 Pakistan</option>
+                                        <option value="ps">🇵🇸 Palestine</option>
+                                        <option value="ph">🇵🇭 Philippines</option>
+                                        <option value="qa">🇶🇦 Qatar</option>
+                                        <option value="sa">🇸🇦 Saudi Arabia</option>
+                                        <option value="sg">🇸🇬 Singapore</option>
+                                        <option value="kr">🇰🇷 South Korea</option>
+                                        <option value="lk">🇱🇰 Sri Lanka</option>
+                                        <option value="sy">🇸🇾 Syria</option>
+                                        <option value="tw">🇹🇼 Taiwan</option>
+                                        <option value="tj">🇹🇯 Tajikistan</option>
+                                        <option value="th">🇹🇭 Thailand</option>
+                                        <option value="tl">🇹🇱 Timor-Leste</option>
+                                        <option value="tr">🇹🇷 Turkey</option>
+                                        <option value="tm">🇹🇲 Turkmenistan</option>
+                                        <option value="ae">🇦🇪 United Arab Emirates</option>
+                                        <option value="uz">🇺🇿 Uzbekistan</option>
+                                        <option value="vn">🇻🇳 Vietnam</option>
+                                        <option value="ye">🇾🇪 Yemen</option>
+
+                                        <option value="al">🇦🇱 Albania</option>
+                                        <option value="ad">🇦🇩 Andorra</option>
+                                        <option value="at">🇦🇹 Austria</option>
+                                        <option value="by">🇧🇾 Belarus</option>
+                                        <option value="be">🇧🇪 Belgium</option>
+                                        <option value="ba">🇧🇦 Bosnia and Herzegovina</option>
+                                        <option value="bg">🇧🇬 Bulgaria</option>
+                                        <option value="hr">🇭🇷 Croatia</option>
+                                        <option value="cz">🇨🇿 Czech Republic</option>
+                                        <option value="dk">🇩🇰 Denmark</option>
+                                        <option value="ee">🇪🇪 Estonia</option>
+                                        <option value="fi">🇫🇮 Finland</option>
+                                        <option value="fr">🇫🇷 France</option>
+                                        <option value="de">🇩🇪 Germany</option>
+                                        <option value="gr">🇬🇷 Greece</option>
+                                        <option value="hu">🇭🇺 Hungary</option>
+                                        <option value="is">🇮🇸 Iceland</option>
+                                        <option value="ie">🇮🇪 Ireland</option>
+                                        <option value="it">🇮🇹 Italy</option>
+                                        <option value="lv">🇱🇻 Latvia</option>
+                                        <option value="li">🇱🇮 Liechtenstein</option>
+                                        <option value="lt">🇱🇹 Lithuania</option>
+                                        <option value="lu">🇱🇺 Luxembourg</option>
+                                        <option value="mt">🇲🇹 Malta</option>
+                                        <option value="md">🇲🇩 Moldova</option>
+                                        <option value="mc">🇲🇨 Monaco</option>
+                                        <option value="me">🇲🇪 Montenegro</option>
+                                        <option value="nl">🇳🇱 Netherlands</option>
+                                        <option value="no">🇳🇴 Norway</option>
+                                        <option value="pl">🇵🇱 Poland</option>
+                                        <option value="pt">🇵🇹 Portugal</option>
+                                        <option value="ro">🇷🇴 Romania</option>
+                                        <option value="ru">🇷🇺 Russia</option>
+                                        <option value="rs">🇷🇸 Serbia</option>
+                                        <option value="sk">🇸🇰 Slovakia</option>
+                                        <option value="si">🇸🇮 Slovenia</option>
+                                        <option value="es">🇪🇸 Spain</option>
+                                        <option value="se">🇸🇪 Sweden</option>
+                                        <option value="ch">🇨🇭 Switzerland</option>
+                                        <option value="ua">🇺🇦 Ukraine</option>
+                                        <option value="gb">🇬🇧 United Kingdom</option>
+                                        <option value="va">🇻🇦 Vatican City</option>
+                                        <option value="xk">🇽🇰 Kosovo</option>
+
+                                        <option value="ag">🇦🇬 Antigua and Barbuda</option>
+                                        <option value="bs">🇧🇸 Bahamas</option>
+                                        <option value="bb">🇧🇧 Barbados</option>
+                                        <option value="bz">🇧🇿 Belize</option>
+                                        <option value="ca">🇨🇦 Canada</option>
+                                        <option value="cr">🇨🇷 Costa Rica</option>
+                                        <option value="cu">🇨🇺 Cuba</option>
+                                        <option value="dm">🇩🇲 Dominica</option>
+                                        <option value="do">🇩🇴 Dominican Republic</option>
+                                        <option value="sv">🇸🇻 El Salvador</option>
+                                        <option value="gd">🇬🇩 Grenada</option>
+                                        <option value="gt">🇬🇹 Guatemala</option>
+                                        <option value="ht">🇭🇹 Haiti</option>
+                                        <option value="hn">🇭🇳 Honduras</option>
+                                        <option value="jm">🇯🇲 Jamaica</option>
+                                        <option value="mx">🇲🇽 Mexico</option>
+                                        <option value="ni">🇳🇮 Nicaragua</option>
+                                        <option value="pa">🇵🇦 Panama</option>
+                                        <option value="kn">🇰🇳 Saint Kitts and Nevis</option>
+                                        <option value="lc">🇱🇨 Saint Lucia</option>
+                                        <option value="vc">🇻🇨 Saint Vincent and the Grenadines</option>
+                                        <option value="tt">🇹🇹 Trinidad and Tobago</option>
+                                        <option value="us">🇺🇸 United States</option>
+
+                                        <option value="ar">🇦🇷 Argentina</option>
+                                        <option value="bo">🇧🇴 Bolivia</option>
+                                        <option value="br">🇧🇷 Brazil</option>
+                                        <option value="cl">🇨🇱 Chile</option>
+                                        <option value="co">🇨🇴 Colombia</option>
+                                        <option value="ec">🇪🇨 Ecuador</option>
+                                        <option value="gy">🇬🇾 Guyana</option>
+                                        <option value="py">🇵🇾 Paraguay</option>
+                                        <option value="pe">🇵🇪 Peru</option>
+                                        <option value="sr">🇸🇷 Suriname</option>
+                                        <option value="uy">🇺🇾 Uruguay</option>
+                                        <option value="ve">🇻🇪 Venezuela</option>
+
+                                        <option value="au">🇦🇺 Australia</option>
+                                        <option value="fj">🇫🇯 Fiji</option>
+                                        <option value="ki">🇰🇮 Kiribati</option>
+                                        <option value="mh">🇲🇭 Marshall Islands</option>
+                                        <option value="fm">🇫🇲 Micronesia</option>
+                                        <option value="nr">🇳🇷 Nauru</option>
+                                        <option value="nz">🇳🇿 New Zealand</option>
+                                        <option value="pw">🇵🇼 Palau</option>
+                                        <option value="pg">🇵🇬 Papua New Guinea</option>
+                                        <option value="ws">🇼🇸 Samoa</option>
+                                        <option value="sb">🇸🇧 Solomon Islands</option>
+                                        <option value="to">🇹🇴 Tonga</option>
+                                        <option value="tv">🇹🇻 Tuvalu</option>
+                                        <option value="vu">🇻🇺 Vanuatu</option>
+                                    </select>
+                                    <span id="server_error" class="text-danger small" style="display:none;">❌ Please
+                                        select a
+                                        server</span>
+                                    @error('server')
+                                        <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <p class="text-center text-white mb-0"><i>মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড
+                                    ব্যবহার করে রেজিষ্ট্রেশন করতে হবে এবং ১০০০৳ ডিপোজিট করতে হবে!</i></p>
+
+
+                            <div class="text-center mt-3">
+                                <button type="submit" id="submit_btn" class="btn-start-game">Start Game</button>
                             </div>
                         </div>
-                
-                        <div class="info-step mb-3">
-                            <h5 class="step-label">
-                                <span class="d-block">4. Select Server</span>
-                                <small class="d-block">৪) সার্ভার/দেশ সিলেক্ট করুন</small>
-                            </h5>
-                            <div class="mt-3">
-                                <select id="server_select" class="form-select custom-input-glow" name="server_name"
-                                    required>
-                                    <option value="" selected disabled>Select Server</option>
-                                    <option value="dz">🇩🇿 Algeria</option>
-                                    <option value="ao">🇦🇴 Angola</option>
-                                    <option value="bj">🇧🇯 Benin</option>
-                                    <option value="bw">🇧🇼 Botswana</option>
-                                    <option value="bf">🇧🇫 Burkina Faso</option>
-                                    <option value="bi">🇧🇮 Burundi</option>
-                                    <option value="cm">🇨🇲 Cameroon</option>
-                                    <option value="cv">🇨🇻 Cape Verde</option>
-                                    <option value="cf">🇨🇫 Central African Republic</option>
-                                    <option value="td">🇹🇩 Chad</option>
-                                    <option value="km">🇰🇲 Comoros</option>
-                                    <option value="cg">🇨🇬 Congo</option>
-                                    <option value="cd">🇨🇩 Congo (Democratic Republic)</option>
-                                    <option value="ci">🇨🇮 Côte d’Ivoire</option>
-                                    <option value="dj">🇩🇯 Djibouti</option>
-                                    <option value="eg">🇪🇬 Egypt</option>
-                                    <option value="gq">🇬🇶 Equatorial Guinea</option>
-                                    <option value="er">🇪🇷 Eritrea</option>
-                                    <option value="sz">🇸🇿 Eswatini</option>
-                                    <option value="et">🇪🇹 Ethiopia</option>
-                                    <option value="ga">🇬🇦 Gabon</option>
-                                    <option value="gm">🇬🇲 Gambia</option>
-                                    <option value="gh">🇬🇭 Ghana</option>
-                                    <option value="gn">🇬🇳 Guinea</option>
-                                    <option value="gw">🇬🇼 Guinea-Bissau</option>
-                                    <option value="ke">🇰🇪 Kenya</option>
-                                    <option value="ls">🇱🇸 Lesotho</option>
-                                    <option value="lr">🇱🇷 Liberia</option>
-                                    <option value="ly">🇱🇾 Libya</option>
-                                    <option value="mg">🇲🇬 Madagascar</option>
-                                    <option value="mw">🇲🇼 Malawi</option>
-                                    <option value="ml">🇲🇱 Mali</option>
-                                    <option value="mr">🇲🇷 Mauritania</option>
-                                    <option value="mu">🇲🇺 Mauritius</option>
-                                    <option value="ma">🇲🇦 Morocco</option>
-                                    <option value="mz">🇲🇿 Mozambique</option>
-                                    <option value="na">🇳🇦 Namibia</option>
-                                    <option value="ne">🇳🇪 Niger</option>
-                                    <option value="ng">🇳🇬 Nigeria</option>
-                                    <option value="re">🇷🇪 Réunion</option>
-                                    <option value="rw">🇷🇼 Rwanda</option>
-                                    <option value="st">🇸🇹 São Tomé and Príncipe</option>
-                                    <option value="sn">🇸🇳 Senegal</option>
-                                    <option value="sc">🇸🇨 Seychelles</option>
-                                    <option value="sl">🇸🇱 Sierra Leone</option>
-                                    <option value="so">🇸🇴 Somalia</option>
-                                    <option value="za">🇿🇦 South Africa</option>
-                                    <option value="ss">🇸🇸 South Sudan</option>
-                                    <option value="sd">🇸🇩 Sudan</option>
-                                    <option value="tz">🇹🇿 Tanzania</option>
-                                    <option value="tg">🇹🇬 Togo</option>
-                                    <option value="tn">🇹🇳 Tunisia</option>
-                                    <option value="ug">🇺🇬 Uganda</option>
-                                    <option value="zm">🇿🇲 Zambia</option>
-                                    <option value="zw">🇿🇼 Zimbabwe</option>
-                
-                                    <option value="af">🇦🇫 Afghanistan</option>
-                                    <option value="am">🇦🇲 Armenia</option>
-                                    <option value="az">🇦🇿 Azerbaijan</option>
-                                    <option value="bh">🇧🇭 Bahrain</option>
-                                    <option value="bd">🇧🇩 Bangladesh</option>
-                                    <option value="bt">🇧🇹 Bhutan</option>
-                                    <option value="bn">🇧🇳 Brunei</option>
-                                    <option value="kh">🇰🇭 Cambodia</option>
-                                    <option value="cn">🇨🇳 China</option>
-                                    <option value="cy">🇨🇾 Cyprus</option>
-                                    <option value="ge">🇬🇪 Georgia</option>
-                                    <option value="hk">🇭🇰 Hong Kong</option>
-                                    <option value="in">🇮🇳 India</option>
-                                    <option value="id">🇮🇩 Indonesia</option>
-                                    <option value="ir">🇮🇷 Iran</option>
-                                    <option value="iq">🇮🇶 Iraq</option>
-                                    <option value="il">🇮🇱 Israel</option>
-                                    <option value="jp">🇯🇵 Japan</option>
-                                    <option value="jo">🇯🇴 Jordan</option>
-                                    <option value="kz">🇰🇿 Kazakhstan</option>
-                                    <option value="kw">🇰🇼 Kuwait</option>
-                                    <option value="kg">🇰🇬 Kyrgyzstan</option>
-                                    <option value="la">🇱🇦 Laos</option>
-                                    <option value="lb">🇱🇧 Lebanon</option>
-                                    <option value="my">🇲🇾 Malaysia</option>
-                                    <option value="mv">🇲🇻 Maldives</option>
-                                    <option value="mn">🇲🇳 Mongolia</option>
-                                    <option value="mm">🇲🇲 Myanmar</option>
-                                    <option value="np">🇳🇵 Nepal</option>
-                                    <option value="om">🇴🇲 Oman</option>
-                                    <option value="pk">🇵🇰 Pakistan</option>
-                                    <option value="ps">🇵🇸 Palestine</option>
-                                    <option value="ph">🇵🇭 Philippines</option>
-                                    <option value="qa">🇶🇦 Qatar</option>
-                                    <option value="sa">🇸🇦 Saudi Arabia</option>
-                                    <option value="sg">🇸🇬 Singapore</option>
-                                    <option value="kr">🇰🇷 South Korea</option>
-                                    <option value="lk">🇱🇰 Sri Lanka</option>
-                                    <option value="sy">🇸🇾 Syria</option>
-                                    <option value="tw">🇹🇼 Taiwan</option>
-                                    <option value="tj">🇹🇯 Tajikistan</option>
-                                    <option value="th">🇹🇭 Thailand</option>
-                                    <option value="tl">🇹🇱 Timor-Leste</option>
-                                    <option value="tr">🇹🇷 Turkey</option>
-                                    <option value="tm">🇹🇲 Turkmenistan</option>
-                                    <option value="ae">🇦🇪 United Arab Emirates</option>
-                                    <option value="uz">🇺🇿 Uzbekistan</option>
-                                    <option value="vn">🇻🇳 Vietnam</option>
-                                    <option value="ye">🇾🇪 Yemen</option>
-                
-                                    <option value="al">🇦🇱 Albania</option>
-                                    <option value="ad">🇦🇩 Andorra</option>
-                                    <option value="at">🇦🇹 Austria</option>
-                                    <option value="by">🇧🇾 Belarus</option>
-                                    <option value="be">🇧🇪 Belgium</option>
-                                    <option value="ba">🇧🇦 Bosnia and Herzegovina</option>
-                                    <option value="bg">🇧🇬 Bulgaria</option>
-                                    <option value="hr">🇭🇷 Croatia</option>
-                                    <option value="cz">🇨🇿 Czech Republic</option>
-                                    <option value="dk">🇩🇰 Denmark</option>
-                                    <option value="ee">🇪🇪 Estonia</option>
-                                    <option value="fi">🇫🇮 Finland</option>
-                                    <option value="fr">🇫🇷 France</option>
-                                    <option value="de">🇩🇪 Germany</option>
-                                    <option value="gr">🇬🇷 Greece</option>
-                                    <option value="hu">🇭🇺 Hungary</option>
-                                    <option value="is">🇮🇸 Iceland</option>
-                                    <option value="ie">🇮🇪 Ireland</option>
-                                    <option value="it">🇮🇹 Italy</option>
-                                    <option value="lv">🇱🇻 Latvia</option>
-                                    <option value="li">🇱🇮 Liechtenstein</option>
-                                    <option value="lt">🇱🇹 Lithuania</option>
-                                    <option value="lu">🇱🇺 Luxembourg</option>
-                                    <option value="mt">🇲🇹 Malta</option>
-                                    <option value="md">🇲🇩 Moldova</option>
-                                    <option value="mc">🇲🇨 Monaco</option>
-                                    <option value="me">🇲🇪 Montenegro</option>
-                                    <option value="nl">🇳🇱 Netherlands</option>
-                                    <option value="no">🇳🇴 Norway</option>
-                                    <option value="pl">🇵🇱 Poland</option>
-                                    <option value="pt">🇵🇹 Portugal</option>
-                                    <option value="ro">🇷🇴 Romania</option>
-                                    <option value="ru">🇷🇺 Russia</option>
-                                    <option value="rs">🇷🇸 Serbia</option>
-                                    <option value="sk">🇸🇰 Slovakia</option>
-                                    <option value="si">🇸🇮 Slovenia</option>
-                                    <option value="es">🇪🇸 Spain</option>
-                                    <option value="se">🇸🇪 Sweden</option>
-                                    <option value="ch">🇨🇭 Switzerland</option>
-                                    <option value="ua">🇺🇦 Ukraine</option>
-                                    <option value="gb">🇬🇧 United Kingdom</option>
-                                    <option value="va">🇻🇦 Vatican City</option>
-                                    <option value="xk">🇽🇰 Kosovo</option>
-                
-                                    <option value="ag">🇦🇬 Antigua and Barbuda</option>
-                                    <option value="bs">🇧🇸 Bahamas</option>
-                                    <option value="bb">🇧🇧 Barbados</option>
-                                    <option value="bz">🇧🇿 Belize</option>
-                                    <option value="ca">🇨🇦 Canada</option>
-                                    <option value="cr">🇨🇷 Costa Rica</option>
-                                    <option value="cu">🇨🇺 Cuba</option>
-                                    <option value="dm">🇩🇲 Dominica</option>
-                                    <option value="do">🇩🇴 Dominican Republic</option>
-                                    <option value="sv">🇸🇻 El Salvador</option>
-                                    <option value="gd">🇬🇩 Grenada</option>
-                                    <option value="gt">🇬🇹 Guatemala</option>
-                                    <option value="ht">🇭🇹 Haiti</option>
-                                    <option value="hn">🇭🇳 Honduras</option>
-                                    <option value="jm">🇯🇲 Jamaica</option>
-                                    <option value="mx">🇲🇽 Mexico</option>
-                                    <option value="ni">🇳🇮 Nicaragua</option>
-                                    <option value="pa">🇵🇦 Panama</option>
-                                    <option value="kn">🇰🇳 Saint Kitts and Nevis</option>
-                                    <option value="lc">🇱🇨 Saint Lucia</option>
-                                    <option value="vc">🇻🇨 Saint Vincent and the Grenadines</option>
-                                    <option value="tt">🇹🇹 Trinidad and Tobago</option>
-                                    <option value="us">🇺🇸 United States</option>
-                
-                                    <option value="ar">🇦🇷 Argentina</option>
-                                    <option value="bo">🇧🇴 Bolivia</option>
-                                    <option value="br">🇧🇷 Brazil</option>
-                                    <option value="cl">🇨🇱 Chile</option>
-                                    <option value="co">🇨🇴 Colombia</option>
-                                    <option value="ec">🇪🇨 Ecuador</option>
-                                    <option value="gy">🇬🇾 Guyana</option>
-                                    <option value="py">🇵🇾 Paraguay</option>
-                                    <option value="pe">🇵🇪 Peru</option>
-                                    <option value="sr">🇸🇷 Suriname</option>
-                                    <option value="uy">🇺🇾 Uruguay</option>
-                                    <option value="ve">🇻🇪 Venezuela</option>
-                
-                                    <option value="au">🇦🇺 Australia</option>
-                                    <option value="fj">🇫🇯 Fiji</option>
-                                    <option value="ki">🇰🇮 Kiribati</option>
-                                    <option value="mh">🇲🇭 Marshall Islands</option>
-                                    <option value="fm">🇫🇲 Micronesia</option>
-                                    <option value="nr">🇳🇷 Nauru</option>
-                                    <option value="nz">🇳🇿 New Zealand</option>
-                                    <option value="pw">🇵🇼 Palau</option>
-                                    <option value="pg">🇵🇬 Papua New Guinea</option>
-                                    <option value="ws">🇼🇸 Samoa</option>
-                                    <option value="sb">🇸🇧 Solomon Islands</option>
-                                    <option value="to">🇹🇴 Tonga</option>
-                                    <option value="tv">🇹🇻 Tuvalu</option>
-                                    <option value="vu">🇻🇺 Vanuatu</option>
-                                </select>
-                                <span id="server_error" class="text-danger small" style="display:none;">❌ Please
-                                    select a
-                                    server</span>
-                                @error('server')
-                                    <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-                
-                        <div class="text-center mt-5">
-                            <button type="submit" id="submit_btn" class="btn-start-game">Start Game</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-    
 @endsection
 @section('footer')
     <script>
