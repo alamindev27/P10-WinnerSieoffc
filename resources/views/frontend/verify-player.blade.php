@@ -400,13 +400,17 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <p class="text-center text-white mb-0"><i>মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড
-                                    ব্যবহার করে রেজিষ্ট্রেশন করতে হবে এবং ১০০০৳ ডিপোজিট করতে হবে!</i></p>
-
+                            <div class="proof-card p-2">
+                                <div class="text-center">
+                                    <small class=" mb-0 text-danger" style="font-size: 0.6rem; ">
+                                        <i>মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড ব্যবহার করে রেজিষ্ট্রেশন করতে হবে
+                                            এবং ১০০০৳ ডিপোজিট করতে হবে!</i>
+                                    </small>
+                                </div>
+                            </div>
 
                             <div class="text-center mt-3">
-                                <button type="submit" id="submit_btn" class="btn-start-game">Start Game</button>
+                                <button type="submit" id="submit_btn" class="btn-start-game">NEXT &raquo;</button>
                             </div>
                         </div>
                     </form>
