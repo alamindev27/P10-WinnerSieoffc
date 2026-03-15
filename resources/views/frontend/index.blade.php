@@ -35,16 +35,24 @@
 
             <div class="col-12 text-center mt-2">
 
-                <div class="d-flex justify-content-center">
-                    @if (isset(setting()->voice) && file_exists(public_path(setting()->voice)))
-                        <div class="" class="">
-                            <audio controls
-                                style="border: 2px solid #3498db; border-radius: 30px; box-shadow: 0 0 35px rgba(0, 210, 255, 0.6);">
-                                <source src="{{ asset(setting()->voice) }}" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
+
+                <div class="proof-card p-2">
+                    <div class="text-center">
+                        <div class="d-flex justify-content-center">
+                            @if (isset(setting()->voice) && file_exists(public_path(setting()->voice)))
+                                <div>
+                                    <audio controls
+                                        style="border: 2px solid #3498db; border-radius: 30px; box-shadow: 0 0 35px rgba(0, 210, 255, 0.6);">
+                                        <source src="{{ asset(setting()->voice) }}" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                            @endif
                         </div>
-                    @endif
+                        <small class=" mb-0 text-danger" style="font-size: 0.9rem; ">
+                            <i>বিস্তারিত জানে সম্পূর্ণ ভয়েজ টি শুনুন</i>
+                        </small>
+                    </div>
                 </div>
 
             </div>
@@ -241,15 +249,18 @@
 
         <div class="modal fade" id="proofModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content" style="background: #0a1e2e; border: 1.5px solid #1a5a8a; border-radius: 20px; overflow: hidden;">
+                <div class="modal-content"
+                    style="background: #0a1e2e; border: 1.5px solid #1a5a8a; border-radius: 20px; overflow: hidden;">
 
                     <div class="modal-header border-0 pb-0">
-                        <p class="modal-title text-warning w-100 text-justify" id="modalText" style="text-align: justify; text-align-last: justify; margin-bottom: 10px;">Winning Proof</p>
+                        <p class="modal-title text-warning w-100 text-justify" id="modalText"
+                            style="text-align: justify; text-align-last: justify; margin-bottom: 10px;">Winning Proof</p>
                     </div>
 
                     <div class="modal-body text-center pt-2">
                         <div class="modal-img-container">
-                            <img src="" id="modalImage" class="img-fluid rounded shadow-lg border" style="max-height: 70vh; border: 1px solid #222;">
+                            <img src="" id="modalImage" class="img-fluid rounded shadow-lg border"
+                                style="max-height: 70vh; border: 1px solid #222;">
                         </div>
                     </div>
 
