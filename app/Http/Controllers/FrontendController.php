@@ -30,7 +30,7 @@ class FrontendController extends Controller
         });
 
         $socials = Cache::rememberForever('socials', function () {
-            return Social::select(['name', 'link', 'subscriber', 'icon'])->get();
+            return Social::select(['name', 'link', 'icon'])->get();
         });
 
         $reviews = Cache::rememberForever('reviews', function () {
