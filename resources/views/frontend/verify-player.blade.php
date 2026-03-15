@@ -402,10 +402,9 @@
                             </div>
                             <div class="proof-card p-2">
                                 <div class="text-center">
-                                    <small class=" mb-0 text-danger" style="font-size: 0.6rem; ">
-                                        <i>মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড ব্যবহার করে রেজিষ্ট্রেশন করতে হবে
-                                            এবং ১০০০৳ ডিপোজিট করতে হবে!</i>
-                                    </small>
+                                    <small class=" mb-0 text-danger" style="font-size: 0.6rem; text-shadow: 0 0 15px rgba(0, 210, 255, 0.6)">
+                                        <span style="font-size: 20px;">⚠️</span>
+                                        <span class="d-block">মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড ব্যবহার করে রেজিষ্ট্রেশন করতে হবে এবং ১০০০৳ ডিপোজিট করতে হবে!</span> </small>
                                 </div>
                             </div>
 
@@ -417,6 +416,7 @@
                 </div>
             </div>
         </div>
+        <br>
     </div>
 @endsection
 @section('footer')
