@@ -23,7 +23,7 @@
 
         <div class="row align-items-center py-3">
             <div class="col-2 text-start me-0 pe-0">
-                <img src="{{ asset(setting()->logo) }}" alt="{{ setting()->site_name }}" class="img-fluid rounded-circle" style="border: 2px solid #3498db; box-shadow: 0px 0px 15px 0px #3498db; max-width: 50px; max-height: 50px;">
+                <img src="{{ asset(setting()->logo) }}" alt="{{ setting()->site_name }}" class="img-fluid rounded-circle" style=" max-width: 50px; max-height: 50px;">
             </div>
             <div class="col-8 text-center mx-auto px-0">
                 <div class="bengali-text">{{ $intro->heading_1 }}</div>
