@@ -30,7 +30,7 @@
                 <div class="amount-text">{{ $intro->heading_2 }}</div>
             </div>
             <div class="col-2 text-end ms-0 ps-0">
-                <span class="text-white" style="background: #3498db; padding: 0px 12px; width: 20px; font-size: 25px;">&equiv;</span>
+                <span class="text-white" style="width: 20px; font-size: 35px;">&equiv;</span>
             </div>
         </div>
 
