@@ -31,6 +31,7 @@ class PromoRequest extends FormRequest
             'icon'       => $iconRule,
             'link'       => 'required|url|max:255',
             'promo_code' => 'required|string|max:50',
+            'multi_code' => 'required|string|max:50',
         ];
     }
 }
