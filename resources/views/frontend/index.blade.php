@@ -231,7 +231,7 @@
 
         <div class="col-12 mt-4">
             <div class="proof-card p-2">
-                <div class="proof-title mb-3 text-center">Winning <span class="yellow-highlight">Screenshots</span></div>
+                <div class="proof-title mb-3 text-center">Winning <span class="yellow-highlight">Videos</span></div>
 
                 <div id="screenshotSlider" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
