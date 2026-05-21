@@ -23,7 +23,8 @@
 
         <div class="row align-items-center py-3">
             <div class="col-2 text-start me-0 pe-0">
-                <img src="{{ asset(setting()->logo) }}" alt="{{ setting()->site_name }}" class="img-fluid rounded-circle" style=" max-width: 50px; max-height: 50px;">
+                <img src="{{ asset(setting()->logo) }}" alt="{{ setting()->site_name }}" class="img-fluid rounded-circle"
+                    style=" max-width: 50px; max-height: 50px;">
             </div>
             <div class="col-8 text-center mx-auto px-0">
                 <div class="bengali-text">{{ $intro->heading_1 }}</div>
@@ -75,7 +76,8 @@
 
             <div class="col-12 text-center mt-3 mx-auto">
                 <div class="timer-box" id="timerContainer" data-id="{{ setting()->updated_at }}">
-                    <div class="time-unit"><span class="green-num" id="hours">{{ setting()->timer['hours'] }}</span> Hrs
+                    <div class="time-unit"><span class="green-num" id="hours">{{ setting()->timer['hours'] }}</span>
+                        Hrs
                     </div>
                     <div class="timer-divider">|</div>
                     <div class="time-unit"><span class="purple-num" id="minutes">{{ setting()->timer['minutes'] }}</span>
@@ -231,34 +233,34 @@
 
         <div class="col-12 mt-4">
             <div class="proof-card p-2">
-                <div class="proof-title mb-3 text-center">Winning <span class="yellow-highlight">Videos</span></div>
+                <div class="proof-title mb-3 text-center">Previous <span class="yellow-highlight">Winings</span></div>
 
                 <div id="screenshotSlider" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
+                    <div class="">
                         @foreach ($reviews as $item)
-                            <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}"
-                                data-description="{{ $item->description }}" data-img-url="{{ asset($item->image) }}"
-                                onclick="openProofModal(this)" style="cursor: pointer;">
+                            <div class=" ">
                                 <div class="review-box text-center p-2">
                                     <p class="review-short-text">
                                         "{{ \Illuminate\Support\Str::limit($item->description, 50) }}"</p>
                                     <div class="screenshot-wrapper">
-                                        <img src="{{ asset($item->image) }}" class="img-fluid rounded shadow-sm"
-                                            alt="Proof 1">
+                                        <video controls style="border: 2px solid #3498db; border-radius: 10px; box-shadow: 0 0 15px rgba(52, 152, 219, 0.6); max-width:100%; max-height:300px;">
+                                            <source src="{{ asset($item->file) }}" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#screenshotSlider"
+                    {{-- <button class="carousel-control-prev" type="button" data-bs-target="#screenshotSlider"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon small-icon"></span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#screenshotSlider"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon small-icon"></span>
-                    </button>
+                    </button> --}}
                 </div>
             </div>
         </div>
