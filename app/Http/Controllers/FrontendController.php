@@ -34,7 +34,7 @@ class FrontendController extends Controller
         });
 
         $reviews = Cache::rememberForever('reviews', function () {
-            return Review::select(['description', 'image'])->get();
+            return Review::select(['description', 'file'])->latest()->limit(1)->get();
         });
 
         return view('frontend.index', compact('intro', 'promos', 'socials', 'proofs', 'reviews'));

@@ -34,9 +34,9 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-lg-12">
-                                    <label for="image">Image  <small class="text-danger">*</small></label>
-                                    <input type="file" class="form-control" name="image" required id="image">
-                                    @error('image')
+                                    <label for="file">Video  <small class="text-danger">*</small></label>
+                                    <input type="file" class="form-control" name="file" required id="file">
+                                    @error('file')
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>

@@ -32,15 +32,15 @@ class ReviewController extends Controller
     {
         $request->validate([
             'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'file' => 'required|file|mimes:mp4,mov,wmv,avi,flv',
         ]);
         $data = new Review();
         $data->description = $request->description;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/reviews'), $filename);
-            $data->image = 'uploads/reviews/' . $filename;
+            $data->file = 'uploads/reviews/' . $filename;
         }
         $data->save();
         return redirect()->route('admin.reviews.index')->with('success', 'Review created successfully.');
@@ -70,19 +70,19 @@ class ReviewController extends Controller
     {
         $request->validate([
             'description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'file' => 'nullable|file|mimes:mp4,mov,wmv,avi,flv',
         ]);
         $data = Review::find($id);
         $data->description = $request->description;
 
-        if ($request->hasFile('image')) {
-            if (file_exists(public_path($data->image))) {
-                unlink(public_path($data->image));
+        if ($request->hasFile('file')) {
+            if (file_exists(public_path($data->file))) {
+                unlink(public_path($data->file));
             }
-            $file = $request->file('image');
+            $file = $request->file('file');
             $filename = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads/reviews'), $filename);
-            $data->image = 'uploads/reviews/' . $filename;
+            $data->file = 'uploads/reviews/' . $filename;
         }
         $data->save();
         return redirect()->route('admin.reviews.index')->with('success', 'Review updated successfully.');
@@ -94,8 +94,8 @@ class ReviewController extends Controller
     public function destroy(string $id)
     {
         $data = Review::find($id);
-        if (file_exists(public_path($data->image))) {
-                unlink(public_path($data->image));
+        if (file_exists(public_path($data->file))) {
+                unlink(public_path($data->file));
             }
         $data->delete();
         return redirect()->route('admin.reviews.index')->with('success', 'Review deleted successfully.');

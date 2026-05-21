@@ -35,7 +35,6 @@
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
                                         <th>Description</th>
                                         <th>Action</th>
                                     </tr>
@@ -43,10 +42,7 @@
                                 <tbody>
                                     @forelse ($datas as $item)
                                         <tr>
-                                            <td>
-                                                <img src="{{ asset($item->image) }}" alt="{{ $item->name }}" width="120"
-                                                    height="80" class=" border p-1">
-                                            </td>
+
                                             <td>{{ \Illuminate\Support\Str::limit($item->description, 150) }}</td>
                                             <td>
                                                 <a href="{{ route('admin.reviews.edit', $item->id) }}" class="btn btn-sm btn-primary">Edit</a>
