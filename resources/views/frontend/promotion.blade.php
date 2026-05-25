@@ -370,7 +370,7 @@
 
                                 <h3 class="modal-title-custom mb-3" style="color: #ff4d4d;">দুঃখিত!</h3>
 
-                                <p class="modal-text-custom mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                                <p class="modal-text-custom mb-4" style="font-size: 12px;">
                                     {{-- আপনি সঠিক ভাবে প্রমোকোড ব্যবহার করে একাউন্ট রেজিষ্ট্রেশন করেন নি। আবার একাউন্ট খুলে চেস্টা
                                     করুন। --}}
                                     আপনি এখনো আমাদের Promocode দিয়ে একাউন্ট রেজিস্ট্রেশন অথবা ১০০০৳ ডিপোজিট সম্পন্ন করেননি।
