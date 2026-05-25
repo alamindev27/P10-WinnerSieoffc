@@ -363,7 +363,7 @@
                 <div class="modal fade" id="promoErrorModal" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content custom-modal-bg">
-                            <div class="modal-body text-center p-5">
+                            <div class="modal-body text-center p-3">
                                 <div class="mb-3">
                                     <span style="font-size: 50px;">⚠️</span>
                                 </div>
