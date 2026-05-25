@@ -34,26 +34,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Heading Bottom <small class="text-danger">*</small></label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control form-control-line" placeholder="Enter heading bottom" value="{{ old('heading_bottom') ?? $data->heading_bottom }}" name="heading_bottom">
-                                            @error('heading_bottom')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Animated Text <small class="text-danger">*</small></label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control form-control-line" placeholder="Enter animated text" value="{{ old('animated_text') ?? $data->animated_text }}" name="animated_text">
-                                            @error('animated_text')
-                                                <small class="text-danger">{{ $message }}</small>
-                                            @enderror
-
-                                        </div>
-                                    </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-md-12">Banner <small>(708*310px)</small> <small class="text-danger">*</small></label>
                                         <div class="col-md-12">

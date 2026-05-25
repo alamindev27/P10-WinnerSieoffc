@@ -1,0 +1,379 @@
+@extends('frontend.layouts.app')
+
+@section('head')
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Baloo+Da+2:wght@400..800&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('frontend/css/index.css') }}">
+
+    <style>
+        /* body{
+                background: #ddd;
+            } */
+        .section-title-glow {
+            color: var(--deep-color);
+            font-size: 1.2rem;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+            font-family: "Hind Siliguri", sans-serif !important;
+        }
+
+        .alert {
+            padding: 0.5rem
+        }
+
+        .copy-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .copy-tooltip {
+            visibility: hidden;
+            width: 60px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 3px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            /* Icon er upore show korbe */
+            left: 50%;
+            margin-left: -30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        /* Tooltip er nicher chotto arrow */
+        .copy-tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        /* Show hole opacity barbe */
+        .show-tooltip .copy-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* পপআপের জন্য কাস্টম স্টাইল */
+        .custom-modal-bg {
+            background: #121212 !important;
+            /* ডার্ক ব্যাকগ্রাউন্ড */
+            border: 2px solid #00d2ff !important;
+            /* সায়ান বর্ডার গ্লো */
+            border-radius: 20px !important;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);
+        }
+
+        .modal-title-custom {
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.2);
+        }
+
+        .modal-text-custom {
+            color: #eeeeee;
+        }
+
+        .btn-modal {
+            padding: 10px 25px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-modal:hover {
+            transform: scale(1.02);
+            filter: brightness(1.2);
+        }
+
+        /* ব্যাকড্রপ ব্লার (ঐচ্ছিক) */
+        .modal-backdrop.show {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .promo-code-box {
+            border-radius: 25px;
+        }
+
+        .promo-code-box img {
+            width: 100%;
+            height: 50px;
+            object-fit: contain;
+            margin-right: 0px;
+        }
+
+        .custom-warning-alert {
+            border: 1px solid #ff9800;
+            border-radius: 10px;
+            padding: 6px;
+            background: rgba(255, 152, 0, 0.05);
+            color: #fff;
+            font-family: 'Hind Siliguri', sans-serif;
+            box-shadow: 0 0 15px rgba(255, 152, 0, 0.2);
+        }
+
+        .warning-icon {
+            color: #ff9800;
+            font-size: 24px;
+        }
+
+        .warning-text {
+            font-size: .8rem;
+            line-height: 1.5;
+        }
+
+        .warning-text .highlight {
+            color: #ff9800;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
+    <link rel="preload" as="image" href="{{ asset('frontend/img/click-button.png') }}">
+@endsection
+@section('content')
+    <div class="container">
+        <div class="row justify-content-center">
+            {{-- <div class="col-12 text-center mt-3 mx-auto">
+                <div class="proof-card p-2">
+                    <h2 class="section-title-glow my-3 text-center">
+                        {{ $promotionData->heading_top }}</h2>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="alert alert-bg-color">
+                    <marquee behavior="scroll" direction=""
+                        class="text-white py-0 fw-bold d-flex justify-content-center align-items-center"
+                        style="font-size: 17px; font-family: 'Hind Siliguri', sans-serif !important;">
+                        {{ $promotionData->animated_text }}</marquee>
+                </div>
+            </div>
+
+             --}}
+
+            <h2 class="section-title-glow my-3 text-center">ফ্রি মাল্টি নিতে Get Code এ ক্লিক করুন</h2>
+
+
+            <div class="col-12">
+                <img src="{{ asset($promotionData->banner) }}" alt="" class="img-fluid rounded border mb-3 w-100">
+            </div>
+
+
+
+
+
+            <div class="col-12 mb-3">
+                <div class="proof-card p-2 pt-3">
+                    <div class="row justify-content-center">
+                        @forelse ($datas as $item)
+                            <div class="col-lg-6 mb-3">
+                                <div class="promo-code-box d-flex align-items-center justify-content-between text-center gap-1"
+                                    style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#promoErrorModal"
+                                    onclick="setBetslipCode('{{ $item->multi_code }}')">
+                                    <div class="text-center mx-auto">
+                                        <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}" style=""
+                                            class="img-fluid rounded-circle py-1" width="50" height="50">
+                                    </div>
+                                    <p class="text-nowrap mb-0 fw-bold" style="font-size: 20px;">Get For Code - </p>
+                                    <div class="text-center mx-auto">
+                                        <img src="{{ asset('frontend/img/click-button.png') }}" alt="{{ $item->name }}"
+                                            class="img-fluid" style="width: 120px; height: 50px; object-fit: contain;">
+                                    </div>
+                                </div>
+
+                            </div>
+                        @empty
+                            <div class="col-12">
+                                <div class="alert alert-bg-color mb-0">No promo codes available at the moment.</div>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col-12">
+                <div class="proof-card p-2 pt-3">
+                    <div class="row justify-content-center">
+                        <div class="col-12">
+                            <p class="text-center mb-0 fw-bold text-white" style="font-size: 18px;">Terms & Conditions (শর্তাবলী) </p>
+                            <ol class="mt-2 text-white" style="font-size: 14px; line-height: 1.6;">
+                                <li class="mb-2">প্রথমে উপরের "Get For Code" বাটনে ক্লিক করুন।</li>
+                                <li class="mb-2">যদি আপনি সঠিকভাবে প্রমোকোড ব্যবহার করে একাউন্ট রেজিস্ট্রেশন।</li>
+                                <li class="mb-2">কোডটি কপি করুন এবং আমাদের ওয়েবসাইটে লগইন করে মাল্টি অ্যাক্সেস পেতে কোডটি ব্যবহার করুন।</li>
+                                <li class="mb-2">যদি আপনি সঠিকভাবে প্রমোকোড ব্যবহার না করে থাকেন</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @auth
+                <div class="modal fade" id="promoErrorModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content custom-modal-bg">
+                            <div class="modal-body text-center p-5">
+                                <div class="mb-3">
+                                    <span style="font-size: 50px;">✅</span>
+                                </div>
+
+                                <h3 class="modal-title-custom mb-3" style="color: #00d2ff;">তথ্য!</h3>
+
+                                <p class="modal-text-custom mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                                    Your Bet Slip Code is: <span class="yellow-highlight fw-bold" id="multicode"></span>.
+                                </p>
+
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn-modal btn-no w-100" data-bs-dismiss="modal"
+                                        style="background: linear-gradient(145deg, #00d2ff, #007bff);">
+                                        ঠিক আছে
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="modal fade" id="promoErrorModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content custom-modal-bg">
+                            <div class="modal-body text-center p-5">
+                                <div class="mb-3">
+                                    <span style="font-size: 50px;">⚠️</span>
+                                </div>
+
+                                <h3 class="modal-title-custom mb-3" style="color: #ff4d4d;">দুঃখিত!</h3>
+
+                                <p class="modal-text-custom mb-4" style="font-size: 1.1rem; line-height: 1.6;">
+                                    {{-- আপনি সঠিক ভাবে প্রমোকোড ব্যবহার করে একাউন্ট রেজিষ্ট্রেশন করেন নি। আবার একাউন্ট খুলে চেস্টা
+                                    করুন। --}}
+                                    আপনি এখনো আমাদের Promocode দিয়ে একাউন্ট রেজিস্ট্রেশন অথবা ১০০০৳ ডিপোজিট সম্পন্ন করেননি।
+                                    ফ্রি মাল্টি পেতে হলে অবশ্যই Promocode ব্যবহার করে রেজিস্ট্রেশন ও মিনিমাম ১০০০৳ ডিপোজিট করতে
+                                    হবে।
+                                </p>
+
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn-modal btn-no w-100" data-bs-dismiss="modal"
+                                        style="background: linear-gradient(145deg, #ff4d4d, #a71d2a);">
+                                        বন্ধ করুন
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endauth
+
+
+
+            <div class="custom-alert-container mt-3">
+                <div class="custom-warning-alert d-flex  gap-2">
+                    <div class="warning-icon">
+                        <span style="font-size: 21px;">⚠️</span>
+                    </div>
+                    <div class="warning-text">
+                        {{ $promotionData->heading_bottom }}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-12">
+                <div class="proof-card p-2 mt-3">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-4">
+                            <span style="font-size: 21px;" class="d-block">💬</span>
+                            <span class="yellow-highlight">Official Partner Links</span>
+                        </div>
+                        <div class="col-4 border-start border-end border-secondary">
+                            <span style="font-size: 21px;" class="d-block">📝</span>
+                            <span class="yellow-highlight">Secoure Registration</span>
+                        </div>
+                        <div class="col-4">
+                            <span style="font-size: 21px;" class="d-block">🎁</span>
+                            <span class="yellow-highlight">100% Free Multi Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-12 text-center mt-3 mx-auto">
+                <div class="proof-card p-2">
+                    <div class="proof-title">Join Our Official <span class="yellow-highlight">Teligram Chanel</span>
+                    </div>
+                    <div class="stats-container">
+                        <a href="{{ social()->link }}" title="{{ social()->name }}">{!! social()->icon !!}</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <br>
+    </div>
+@endsection
+@section('footer')
+    <script>
+        function copyToClipboard(text, element) {
+            const originalIcon =
+                `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/></svg>`;
+            const successIcon =
+                `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16"><path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5z"/><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708"/></svg>`;
+
+            const btn = element.querySelector('.copy-btn');
+
+            // Clipboard Copy Logic
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(showSuccess);
+            } else {
+                let textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showSuccess();
+                } catch (err) {}
+                textArea.remove();
+            }
+
+            function showSuccess() {
+                // Show Tooltip & Change Icon
+                element.classList.add('show-tooltip');
+                btn.innerHTML = successIcon;
+                btn.style.color = "#28a745";
+
+                // Reset after 1.5 seconds
+                setTimeout(() => {
+                    element.classList.remove('show-tooltip');
+                    btn.innerHTML = originalIcon;
+                    btn.style.color = "";
+                }, 1500);
+            }
+        }
+
+
+        function setBetslipCode(code) {
+            $('#multicode').text(code);
+        }
+    </script>
+@endsection

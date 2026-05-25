@@ -56,15 +56,11 @@ class PromotionalController extends Controller
     {
         $request->validate([
             'heading_top' => 'required',
-            'heading_bottom' => 'required',
-            'animated_text' => 'required',
             'banner' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
         ]);
 
         $data = Promotion::findOrFail($id);
         $data->heading_top = $request->heading_top;
-        $data->heading_bottom = $request->heading_bottom;
-        $data->animated_text = $request->animated_text;
 
         if ($request->hasFile('banner')) {
 
