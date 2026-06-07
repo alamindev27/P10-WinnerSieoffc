@@ -114,32 +114,35 @@
                     <h2 class="section-title-glow mb-3">Select your infos</h2>
                     <form id="infoForm" action="{{ route('frontend.player.promotion') }}" method="POST">
                         @csrf
+                        <!-- হিল্টেন ইনপুট যেখানে ড্রপডাউন থেকে সিলেক্ট করা ID বসবে -->
                         <input type="text" id="promo_id" name="promo_id" value="" hidden>
 
                         <div class="info-form-wrapper mx-auto text-start">
 
+                            <!-- ১. বুকমেকার সিলেকশন (ফিক্সড ড্রপডাউন) -->
                             <div class="info-step mb-3">
                                 <h5 class="step-label">
                                     <span class="d-block">1. Select your bookmaker.</span>
                                     <small class="d-block">১) কোন সাইট এ একাউন্ট খুলেছেন?</small>
                                 </h5>
-                                <div class="row justify-content-center">
-                                    @foreach ($datas as $item)
-                                        <div class="col bookmaker-logo text-center mt-3 px-1"
-                                            onclick="setBookmarker('{{ $item->id }}', this)">
-                                            <img src="{{ asset($item->icon) }}" alt="{{ $item->name }}"
-                                                class="img-fluid rounded border"
-                                                style="height: 40px; width:40px;  object-fit: contain; cursor: pointer;">
-                                        </div>
-                                    @endforeach
+                                <div class="mt-3">
+                                    <!-- এখানে অনচেঞ্জ (onchange) ইভেন্ট ব্যবহার করা হয়েছে এবং আইডি ইউনিক করা হয়েছে -->
+                                    <select id="bookmaker_select" class="form-select custom-input-glow" name="bookmaker_id"
+                                        onchange="setBookmarker(this.value)" required>
+                                        <option value="" selected disabled>Select bookmaker</option>
+                                        @foreach ($datas as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span id="promo_error" class="text-danger small" style="display:none;">❌ Please select a
+                                        bookmaker</span>
+                                    @error('promo_id')
+                                        <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
+                                    @enderror
                                 </div>
-                                <span id="promo_error" class="text-danger small" style="display:none;">❌ Please select a
-                                    bookmaker</span>
-                                @error('promo_id')
-                                    <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
-                                @enderror
                             </div>
 
+                            <!-- ২. প্লেয়ার আইডি -->
                             <div class="info-step mb-3">
                                 <h5 class="step-label">
                                     <span class="d-block">2. Enter Player ID</span>
@@ -162,6 +165,7 @@
                                 </div>
                             </div>
 
+                            <!-- ৩. ডিপোজিট পরিমাণ -->
                             <div class="info-step mb-3">
                                 <h5 class="step-label">
                                     <span class="d-block">3. Deposit Amount</span>
@@ -181,6 +185,7 @@
                                 </div>
                             </div>
 
+                            <!-- ৪. সার্ভার সিলেকশন -->
                             <div class="info-step mb-3">
                                 <h5 class="step-label">
                                     <span class="d-block">4. Select Server</span>
@@ -204,7 +209,7 @@
                                         <option value="cg">🇨🇬 Congo</option>
                                         <option value="cd">🇨🇩 Congo (Democratic Republic)</option>
                                         <option value="ci">🇨🇮 Côte d’Ivoire</option>
-                                        <option value="dj">🇩🇯 Djibouti</option>
+                                        <option value="dj">🇩жих Djibouti</option>
                                         <option value="eg">🇪🇬 Egypt</option>
                                         <option value="gq">🇬🇶 Equatorial Guinea</option>
                                         <option value="er">🇪🇷 Eritrea</option>
@@ -245,7 +250,6 @@
                                         <option value="ug">🇺🇬 Uganda</option>
                                         <option value="zm">🇿🇲 Zambia</option>
                                         <option value="zw">🇿🇼 Zimbabwe</option>
-
                                         <option value="af">🇦🇫 Afghanistan</option>
                                         <option value="am">🇦🇲 Armenia</option>
                                         <option value="az">🇦🇿 Azerbaijan</option>
@@ -295,7 +299,6 @@
                                         <option value="uz">🇺🇿 Uzbekistan</option>
                                         <option value="vn">🇻🇳 Vietnam</option>
                                         <option value="ye">🇾🇪 Yemen</option>
-
                                         <option value="al">🇦🇱 Albania</option>
                                         <option value="ad">🇦🇩 Andorra</option>
                                         <option value="at">🇦🇹 Austria</option>
@@ -338,8 +341,7 @@
                                         <option value="ua">🇺🇦 Ukraine</option>
                                         <option value="gb">🇬🇧 United Kingdom</option>
                                         <option value="va">🇻🇦 Vatican City</option>
-                                        <option value="xk">🇽🇰 Kosovo</option>
-
+                                        <option value="xk">🇽尋 Kosovo</option>
                                         <option value="ag">🇦🇬 Antigua and Barbuda</option>
                                         <option value="bs">🇧🇸 Bahamas</option>
                                         <option value="bb">🇧🇧 Barbados</option>
@@ -363,7 +365,6 @@
                                         <option value="vc">🇻🇨 Saint Vincent and the Grenadines</option>
                                         <option value="tt">🇹🇹 Trinidad and Tobago</option>
                                         <option value="us">🇺🇸 United States</option>
-
                                         <option value="ar">🇦🇷 Argentina</option>
                                         <option value="bo">🇧🇴 Bolivia</option>
                                         <option value="br">🇧🇷 Brazil</option>
@@ -376,7 +377,6 @@
                                         <option value="sr">🇸🇷 Suriname</option>
                                         <option value="uy">🇺🇾 Uruguay</option>
                                         <option value="ve">🇻🇪 Venezuela</option>
-
                                         <option value="au">🇦🇺 Australia</option>
                                         <option value="fj">🇫🇯 Fiji</option>
                                         <option value="ki">🇰🇮 Kiribati</option>
@@ -393,21 +393,26 @@
                                         <option value="vu">🇻🇺 Vanuatu</option>
                                     </select>
                                     <span id="server_error" class="text-danger small" style="display:none;">❌ Please
-                                        select a
-                                        server</span>
+                                        select a server</span>
                                     @error('server')
                                         <span class="text-danger small" style="display:block;">❌ {{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
+
+                            <!-- নোটিশ কার্ড -->
                             <div class="proof-card p-2">
                                 <div class="text-center">
-                                    <small class=" mb-0 text-danger" style="font-size: 0.6rem; text-shadow: 0 0 15px rgba(0, 210, 255, 0.6)">
+                                    <small class="mb-0 text-danger"
+                                        style="font-size: 0.6rem; text-shadow: 0 0 15px rgba(0, 210, 255, 0.6)">
                                         <span style="font-size: 20px;">⚠️</span>
-                                        <span class="d-block">মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড ব্যবহার করে রেজিষ্ট্রেশন করতে হবে এবং ১০০০৳ ডিপোজিট করতে হবে!</span> </small>
+                                        <span class="d-block">মাল্টির কোড সক্রিয় করতে আপনাকে আমাদের প্রমোকোড ব্যবহার করে
+                                            রেজিষ্ট্রেশন করতে হবে এবং ১০০০৳ ডিপোজিট করতে হবে!</span>
+                                    </small>
                                 </div>
                             </div>
 
+                            <!-- সাবমিট বাটন -->
                             <div class="text-center mt-3">
                                 <button type="submit" id="submit_btn" class="btn-start-game">NEXT &raquo;</button>
                             </div>
@@ -421,45 +426,16 @@
 @endsection
 @section('footer')
     <script>
-        function setBookmarker(promoId, element) {
-            var bookmakerLogos = document.querySelectorAll('.bookmaker-logo');
-            bookmakerLogos.forEach(function(logo) {
-                logo.classList.remove('active');
-            });
-
-            element.classList.add('active');
-
-            $('#promo_id').val(promoId);
-
-            // console.log("Selected Bookmaker:", name);
-        }
-    </script>
-
-
-
-    <script>
-        // ১. বুকমেকার সিলেকশন ফাংশন (এটি গ্লোবাল রাখা হয়েছে)
-        function setBookmarker(id, element) {
+        // ১. বুকমেকার সিলেক্ট ড্রপডাউন পরিবর্তন হলে এই ফাংশনটি রান হবে
+        function setBookmarker(id) {
             const promoInput = document.getElementById('promo_id');
             const promoError = document.getElementById('promo_error');
 
             if (promoInput) {
-                promoInput.value = id;
+                promoInput.value = id; // ড্রপডাউন থেকে আইডি নিয়ে হিডেন ইনপুটে সেট করবে
                 if (promoError) promoError.style.display = 'none';
 
-                // ভিজ্যুয়াল সিলেকশন UI আপডেট
-                document.querySelectorAll('.bookmaker-logo').forEach(el => {
-                    el.style.filter = 'grayscale(100%)';
-                    el.style.border = 'none';
-                    el.classList.remove('selected-bookie');
-                });
-
-                element.style.filter = 'grayscale(0%) drop-shadow(0 0 8px #00d2ff)';
-                // element.style.border = '1px solid #00d2ff';
-                // element.style.borderRadius = '8px';
-                element.classList.add('selected-bookie');
-
-                // ভ্যালিডেশন ট্রিগার করার জন্য কাস্টম ইভেন্ট
+                // মেইন ভ্যালিডেশন ট্রিগার করার জন্য কাস্টম ইভেন্ট ফায়ার করা হলো
                 window.dispatchEvent(new Event('form-check'));
             }
         }
@@ -473,7 +449,7 @@
             const submitBtn = document.getElementById('submit_btn');
             const promoInput = document.getElementById('promo_id');
 
-            // ২. মেইন ভ্যালিডেশন লজিক (সব ফিল্ড চেক করবে)
+            // ২. মেইন ভ্যালিডেশন লজিক (আপনার আগের সব কন্ডিশন ঠিক রাখা হয়েছে)
             function validateForm() {
                 const pId = playerIdInput.value.trim();
                 const amountVal = amountInput.value.trim();
@@ -482,9 +458,10 @@
                 const isServerSelected = serverSelect.value !== "" && serverSelect.value !== "Select Server";
                 const isPlayerIdValid = (pId.length === 10 && pId.startsWith('1') && /^\d+$/.test(pId));
 
-                // Amount ভ্যালিডেশন: খালি থাকা যাবে না, সংখ্যা হতে হবে এবং ০ এর বেশি হতে হবে
+                // Amount ভ্যালিডেশন
                 const isAmountValid = (amountVal !== "" && !isNaN(amountVal) && parseFloat(amountVal) > 0);
 
+                // সব শর্ত পূরণ হলে বাটন একটিভ হবে
                 if (isPromoSelected && isServerSelected && isPlayerIdValid && isAmountValid) {
                     submitBtn.disabled = false;
                     submitBtn.style.opacity = "1";
@@ -498,7 +475,7 @@
                 }
             }
 
-            // ৩. Player ID রিয়েল-টাইম ভ্যালিডেশন
+            // ৩. Player ID রিয়েল-টাইম ভ্যালিডেশন
             if (playerIdInput) {
                 ['input', 'keyup', 'blur'].forEach(evt => {
                     playerIdInput.addEventListener(evt, function() {
@@ -528,7 +505,7 @@
                 });
             }
 
-            // ৪. Amount ফিল্ডের জন্য রিয়েল-টাইম ভ্যালিডেশন
+            // ৪. Amount ফিল্ডের জন্য রিয়েল-টাইম ভ্যালিডেশন
             if (amountInput) {
                 ['input', 'keyup', 'blur'].forEach(evt => {
                     amountInput.addEventListener(evt, function() {
@@ -564,7 +541,7 @@
             // ৬. বুকমেকার সিলেকশনের জন্য কাস্টম লিসেনার
             window.addEventListener('form-check', validateForm);
 
-            // পেজ লোড হওয়ার সময় একবার চেক করা
+            // পেজ লোড হওয়ার সময় রান করার জন্য
             validateForm();
         });
     </script>
