@@ -161,7 +161,7 @@
         .step-item {
             display: flex;
             gap: 12px;
-            font-size: 10px;
+            font-size: 12px;
             color: #c4d1ec;
             margin-top: 12px;
             align-items: flex-start;
@@ -228,7 +228,7 @@
         }
 
         .btn-telegram {
-            background-color: transparent;
+            background-color: #24A1DE;
             border: 1px solid #124099;
             color: #ffffff;
             border-radius: 20px;
@@ -297,23 +297,7 @@
                 <img src="{{ asset($promotionData->banner) }}" alt="" class="img-fluid rounded border w-100">
             </div>
 
-            <div class="row g-0 py-2" style="border: 1px solid rgba(18, 64, 153, 0.3); border-radius: 8px;">
-                <div class="col-4 feature-item divider-v">
-                    <i class="fa-solid fa-shield-halved feature-icon-blue"></i>
-                    <div class="feature-title" style="color: #3275ff;">Official Partner Links</div>
-                    <div class="feature-sub">Trusted & Verified</div>
-                </div>
-                <div class="col-4 feature-item divider-v">
-                    <i class="fa-solid fa-lock feature-icon-purple"></i>
-                    <div class="feature-title" style="color: #b05cff;">Secure Registration</div>
-                    <div class="feature-sub">Safe & Protected</div>
-                </div>
-                <div class="col-4 feature-item">
-                    <i class="fa-solid fa-gift feature-icon-gold"></i>
-                    <div class="feature-title" style="color: #ffc107;">100% Free Access</div>
-                    <div class="feature-sub">No Hidden Charges</div>
-                </div>
-            </div>
+
             @forelse ($datas as $item)
                 <div class="action-box" data-bs-toggle="modal" data-bs-target="#promoErrorModal"
                     onclick="setBetslipCode('{{ $item->multi_code }}')">
@@ -398,22 +382,45 @@
                 <ul class="step-list">
                     <li class="step-item">
                         <span class="step-num">1</span>
-                        <div>প্রথমে উপরের "Get Free Code" বাটনে ক্লিক করুন।</div>
+                        <div>{{ $terms->one }}</div>
                     </li>
                     <li class="step-item">
                         <span class="step-num">2</span>
-                        <div>যদি আপনি সঠিকভাবে প্রোমোকোড ব্যবহার করে একাউন্ট রেজিস্ট্রেশন করুন।</div>
+                        <div>{{ $terms->two }}</div>
                     </li>
                     <li class="step-item">
                         <span class="step-num">3</span>
-                        <div>কোডটি কপি করুন এবং আমাদের ওয়েবসাইটে লগইন করে মাল্টি অ্যাক্সেস পেতে কোডটি ব্যবহার করুন।</div>
+                        <div>{{ $terms->three }}</div>
                     </li>
                     <li class="step-item">
                         <span class="step-num">4</span>
-                        <div>যদি আপনি সঠিকভাবে প্রোমোকোড ব্যবহার না করে থাকেন।</div>
+                        <div>{{ $terms->four }}</div>
                     </li>
                 </ul>
             </div>
+
+
+
+
+            <div class="row g-0 py-2" style="border: 1px solid rgba(18, 64, 153, 0.3); border-radius: 8px;">
+                <div class="col-4 feature-item divider-v">
+                    <i class="fa-solid fa-shield-halved feature-icon-blue"></i>
+                    <div class="feature-title" style="color: #3275ff;">Official Partner Links</div>
+                    <div class="feature-sub">Trusted & Verified</div>
+                </div>
+                <div class="col-4 feature-item divider-v">
+                    <i class="fa-solid fa-lock feature-icon-purple"></i>
+                    <div class="feature-title" style="color: #b05cff;">Secure Registration</div>
+                    <div class="feature-sub">Safe & Protected</div>
+                </div>
+                <div class="col-4 feature-item">
+                    <i class="fa-solid fa-gift feature-icon-gold"></i>
+                    <div class="feature-title" style="color: #ffc107;">100% Free Access</div>
+                    <div class="feature-sub">No Hidden Charges</div>
+                </div>
+            </div>
+
+
 
             <div class="warning-box">
                 <div class="warning-icon">
@@ -447,12 +454,9 @@
     </div>
 @endsection
 @section('footer')
-
-<script>
-    function setBetslipCode(code) {
+    <script>
+        function setBetslipCode(code) {
             $('#multicode').text(code);
         }
-
-</script>
-
+    </script>
 @endsection

@@ -8,6 +8,7 @@ use App\Models\Promotion;
 use App\Models\Proof;
 use App\Models\Review;
 use App\Models\Social;
+use App\Models\Terms;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -98,6 +99,8 @@ class FrontendController extends Controller
             return Promotion::first();
         });
 
-        return view('frontend.promotion', compact('promotion', 'datas', 'promotionData'));
+        $terms = Terms::select(['one', 'two', 'three', 'four'])->first();
+
+        return view('frontend.promotion', compact('promotion', 'datas', 'promotionData', 'terms'));
     }
 }

@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
 
-            <div class="col-lg-8 col-xlg-9 col-md-7">
+            <div class="col-lg-6">
                 <div class="card">
                     <div class="tab-content">
                         <div class="tab-pane fade show active">
@@ -34,7 +34,7 @@
 
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label class="col-md-12">Banner <small>(708*310px)</small> <small class="text-danger">*</small></label>
                                         <div class="col-md-12">
@@ -49,6 +49,71 @@
                                             <img src="{{ asset($data->banner) }}" alt="" width="200" height="90" class="rounded border">
                                         </div>
                                     </div>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-success">Save & Update</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material"
+                                    action="{{ route('admin.promotional.terms') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label class="col-md-12">Terms 1 <small class="text-danger">*</small></label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-line" placeholder="Enter terms 1" value="{{ old('terms_1') ?? $terms->one }}" name="terms_1">
+                                            @error('terms_1')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Terms 2 <small class="text-danger">*</small></label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-line" placeholder="Enter terms 2" value="{{ old('terms_2') ?? $terms->two }}" name="terms_2">
+                                            @error('terms_2')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Terms 3 <small class="text-danger">*</small></label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-line" placeholder="Enter terms 3" value="{{ old('terms_3') ?? $terms->three }}" name="terms_3">
+                                            @error('terms_3')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12">Terms 4 <small class="text-danger">*</small></label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-line" placeholder="Enter terms 4" value="{{ old('terms_4') ?? $terms->four }}" name="terms_4">
+                                            @error('terms_4')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
+
+                                        </div>
+                                    </div>
+
 
 
 

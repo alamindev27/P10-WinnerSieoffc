@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             IntroSeeder::class,
             SocialSeeder::class,
             PromotionSeeder::class,
+            TermsSeeder::class,
         ]);
     }
 }

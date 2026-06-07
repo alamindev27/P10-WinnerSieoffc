@@ -51,7 +51,6 @@ Route::name('admin.')->group(function () {
     Route::resource('proof', ProofController::class)->except(['show']);
     Route::resource('socials', SocialController::class)->except(['show', 'create', 'destroy', 'store']);
     Route::resource('promotional', PromotionalController::class)->except(['show', 'create', 'destroy', 'store']);
+    Route::post('/terms', [PromotionalController::class, 'terms'])->name('promotional.terms');
     Route::resource('reviews', ReviewController::class)->except(['show']);
-
-
 });

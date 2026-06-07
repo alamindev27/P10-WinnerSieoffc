@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Promotion;
+use App\Models\Terms;
 
 class PromotionalController extends Controller
 {
@@ -46,7 +47,8 @@ class PromotionalController extends Controller
     public function edit(string $id)
     {
         $data = Promotion::findOrFail($id);
-        return view('admin.promotional.edit', compact('data'));
+        $terms = Terms::first();
+        return view('admin.promotional.edit', compact('data', 'terms'));
     }
 
     /**
@@ -89,5 +91,26 @@ class PromotionalController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+
+    public function terms(Request $request)
+    {
+        $request->validate([
+            'terms_1' => 'required',
+            'terms_2' => 'required',
+            'terms_3' => 'required',
+            'terms_4' => 'required',
+        ]);
+
+        $terms = Terms::first();
+        $terms->one = $request->terms_1;
+        $terms->two = $request->terms_2;
+        $terms->three = $request->terms_3;
+        $terms->four = $request->terms_4;
+        $terms->save();
+
+        return redirect()->back()->with('success', 'Terms updated successfully.');
     }
 }
